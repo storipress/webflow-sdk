@@ -26,6 +26,8 @@ class Site extends WebflowObject
 
     public string $createdOn;
 
+    public string $displayName;
+
     public string $shortName;
 
     public string $lastPublished;
@@ -38,6 +40,8 @@ class Site extends WebflowObject
      * @var array<array<CustomDomain>>
      */
     public array $customDomains;
+
+    public bool $publishToWebflowSubdomain;
 
     /**
      * @param  SiteData  $data
@@ -52,12 +56,12 @@ class Site extends WebflowObject
             $domains[] = (new CustomDomain)->from($domain);
         }
 
-        $site['customDomains'] = $domains;
+        $data['customDomains'] = $domains;
 
-        $this->map($site);
+        $this->map($data);
 
         if (isset($data['publishToWebflowSubdomain'])) {
-            $site['publishToWebflowSubdomain'] = $data['publishToWebflowSubdomain'];
+            $this->publishToWebflowSubdomain = $data['publishToWebflowSubdomain'];
         }
 
         return $this;

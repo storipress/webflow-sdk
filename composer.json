@@ -6,6 +6,11 @@
             "Storipress\\Webflow\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
     "require": {
         "php": "~8.1",
         "illuminate/http": "~10.0",

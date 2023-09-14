@@ -2,7 +2,7 @@
 
 namespace Storipress\Webflow;
 
-use Illuminate\Http\Client\PendingRequest;
+use Illuminate\Http\Client\Factory;
 use Storipress\Webflow\Requests\Site;
 
 class Webflow
@@ -11,7 +11,7 @@ class Webflow
 
     public string $siteId;
 
-    public function __construct(public PendingRequest $http)
+    public function __construct(public Factory $http)
     {
     }
 
@@ -22,7 +22,7 @@ class Webflow
         return $this;
     }
 
-    public function setHttpClient(PendingRequest $http): self
+    public function setHttpClient(Factory $http): self
     {
         $this->http = $http;
 
