@@ -2,7 +2,7 @@
 
 namespace Storipress\Webflow\Objects;
 
-class CustomDomain extends Attribute
+class CustomDomain extends WebflowObject
 {
     public string $id;
 

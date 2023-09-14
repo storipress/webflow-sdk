@@ -2,7 +2,7 @@
 
 namespace Storipress\Webflow\Objects;
 
-class Site extends Attribute
+class Site extends WebflowObject
 {
     public string $id;
 
