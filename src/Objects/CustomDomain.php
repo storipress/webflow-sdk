@@ -14,12 +14,11 @@ class CustomDomain extends WebflowObject
 
     public string $url;
 
-	/**
-	 * @param  DomainData  $data
-	 * @return self
-	 */
-	public function from(array $data): self
-	{
-		return $this->setRaw($data)->map($data);
-	}
+    /**
+     * @param  DomainData  $data
+     */
+    public function from(array $data): self
+    {
+        return $this->setRaw($data)->map($data);
+    }
 }

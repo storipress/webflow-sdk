@@ -39,28 +39,27 @@ class Site extends WebflowObject
      */
     public array $customDomains;
 
-	/**
-	 * @param  SiteData  $data
-	 * @return self
-	 */
-	public function from(array $data): self
-	{
-		$this->setRaw($data);
+    /**
+     * @param  SiteData  $data
+     */
+    public function from(array $data): self
+    {
+        $this->setRaw($data);
 
-		$domains = [];
+        $domains = [];
 
-		foreach ($data['customDomains'] as $domain) {
-			$domains[] = (new CustomDomain)->from($domain);
-		}
+        foreach ($data['customDomains'] as $domain) {
+            $domains[] = (new CustomDomain)->from($domain);
+        }
 
-		$site['customDomains'] = $domains;
+        $site['customDomains'] = $domains;
 
-		$this->map($site);
+        $this->map($site);
 
-		if (isset($data['publishToWebflowSubdomain'])) {
-			$site['publishToWebflowSubdomain'] = $data['publishToWebflowSubdomain'];
-		}
+        if (isset($data['publishToWebflowSubdomain'])) {
+            $site['publishToWebflowSubdomain'] = $data['publishToWebflowSubdomain'];
+        }
 
-		return $this;
-	}
+        return $this;
+    }
 }

@@ -12,50 +12,56 @@ use Storipress\Webflow\Objects\Site as SiteObject;
 class Site extends Request
 {
     /**
+     * https://developers.webflow.com/reference/list-sites
+     *
      * @return SiteObject[]|null
      */
     public function list(): ?array
     {
-		/** @var array{sites: SiteData[]}|null $data */
+        /** @var array{sites: SiteData[]}|null $data */
         $data = $this->request('get', '/sites');
 
         if (is_null($data)) {
             return null;
         }
 
-		$sites = [];
+        $sites = [];
 
-		foreach ($data['sites'] as $site) {
-			$sites[] = (new SiteObject)->from($site);
-		}
+        foreach ($data['sites'] as $site) {
+            $sites[] = (new SiteObject)->from($site);
+        }
 
-		return $sites;
+        return $sites;
     }
 
+    /**
+     * https://developers.webflow.com/reference/get-site
+     */
     public function get(): ?SiteObject
     {
         $uri = sprintf('/sites/%s', $this->app->siteId);
 
-		/** @var SiteData|null $data */
+        /** @var SiteData|null $data */
         $data = $this->request('get', $uri);
 
         if (is_null($data)) {
             return null;
         }
 
-		return (new SiteObject)->from($data);
+        return (new SiteObject)->from($data);
     }
 
     /**
+     * https://developers.webflow.com/reference/site-publish
+     *
      * @param  string[]  $customDomains
-     * @return SiteObject|null
      */
     public function publish(array $customDomains = [], bool $publishToWebflowSubdomain = false): ?SiteObject
     {
         $uri = sprintf('/sites/%s/publish', $this->app->siteId);
 
-		/** @var SiteData|null $data */
-		$data = $this->request('post', $uri, [
+        /** @var SiteData|null $data */
+        $data = $this->request('post', $uri, [
             'customDomains' => $customDomains,
             'publishToWebflowSubdomain' => $publishToWebflowSubdomain,
         ]);
@@ -64,6 +70,6 @@ class Site extends Request
             return null;
         }
 
-		return (new SiteObject)->from($data);
+        return (new SiteObject)->from($data);
     }
 }

@@ -6,6 +6,9 @@ namespace Storipress\Webflow\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
+/**
+ * @method static \Storipress\Webflow\Requests\Site site()
+ */
 final class Webflow extends Facade
 {
     /**
