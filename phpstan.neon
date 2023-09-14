@@ -9,3 +9,6 @@ parameters:
 
     paths:
         - src
+
+    ignoreErrors:
+        - '#PHPDoc tag @var for variable \$data contains unresolvable type\.#'
