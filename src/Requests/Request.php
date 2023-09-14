@@ -32,7 +32,7 @@ abstract class Request
         /** @var Response $response */
         $response = $this->app->http->{$method}($url, $options);
 
-        if (! $response->successful()) {
+        if (!$response->successful()) {
             $this->error($response->status(), $response->body(), $response->headers());
         }
 

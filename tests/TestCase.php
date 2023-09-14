@@ -13,7 +13,7 @@ class TestCase extends BaseTestCase
 
         Http::preventStrayRequests();
 
-        $data = require __DIR__.'/Datasets.php';
+        $data = require __DIR__ . '/Datasets.php';
 
         Http::fake($data);
     }

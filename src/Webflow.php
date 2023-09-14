@@ -38,7 +38,7 @@ class Webflow
 
     public function site(): Site
     {
-        if (! isset($this->site)) {
+        if (!isset($this->site)) {
             $this->site = new Site($this);
         }
 
