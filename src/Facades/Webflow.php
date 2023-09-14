@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @method static \Storipress\Webflow\Requests\Site site()
  */
-final class Webflow extends Facade
+class Webflow extends Facade
 {
     /**
      * Get the registered name of the component.

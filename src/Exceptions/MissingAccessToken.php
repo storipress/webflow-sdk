@@ -6,10 +6,7 @@ namespace Storipress\Webflow\Exceptions;
 
 use InvalidArgumentException;
 
-/**
- * @internal
- */
-final class MissingAccessToken extends InvalidArgumentException
+class MissingAccessToken extends InvalidArgumentException
 {
     /**
      * Create a new exception instance.

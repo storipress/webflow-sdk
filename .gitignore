@@ -1,5 +1,7 @@
 /.phpunit.cache
 /vendor
+/coverage
+clover.xml
 composer.phar
 composer.lock
 .DS_Store

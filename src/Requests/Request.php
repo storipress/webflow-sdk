@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Storipress\Webflow\Requests;
 
 use Illuminate\Http\Client\Response;
@@ -17,8 +19,10 @@ abstract class Request
 
     const ENDPOINT = 'https://api.webflow.com';
 
-    public function __construct(protected Webflow $app)
-    {
+    public function __construct(
+        protected Webflow $app,
+    ) {
+        //
     }
 
     /**

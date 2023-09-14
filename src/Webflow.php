@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Storipress\Webflow;
 
 use Illuminate\Http\Client\Factory;
@@ -11,8 +13,10 @@ class Webflow
 
     public string $siteId;
 
-    public function __construct(public Factory $http)
-    {
+    public function __construct(
+        public Factory $http,
+    ) {
+        //
     }
 
     public function setSiteId(string $siteId): self

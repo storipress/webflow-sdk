@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Storipress\Webflow\Exceptions;
 
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;

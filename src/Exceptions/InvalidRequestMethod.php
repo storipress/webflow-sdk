@@ -6,10 +6,7 @@ namespace Storipress\Webflow\Exceptions;
 
 use InvalidArgumentException;
 
-/**
- * @internal
- */
-final class InvalidRequestMethod extends InvalidArgumentException
+class InvalidRequestMethod extends InvalidArgumentException
 {
     /**
      * Create a new exception instance.
