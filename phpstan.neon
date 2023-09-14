@@ -1,0 +1,18 @@
+includes:
+    - vendor/nunomaduro/larastan/extension.neon
+
+parameters:
+    level: max
+
+    parallel:
+        maximumNumberOfProcesses: 4
+
+    # https://github.com/phpstan/phpstan/issues/8550
+    # https://github.com/phpstan/phpstan/issues/8566
+    phpVersion: 80100 # PHP 8.1
+
+    paths:
+        - src
+
+    excludePaths:
+        - vendor
