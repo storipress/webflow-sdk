@@ -3,6 +3,19 @@
     "description": "Webflow API v2 SDK for Laravel",
     "license": "MIT",
     "type": "library",
+    "require": {
+        "php": "^8.1",
+        "illuminate/http": "^10.0",
+        "illuminate/support": "^10.0"
+    },
+    "require-dev": {
+        "ergebnis/composer-normalize": "^2.36",
+        "guzzlehttp/guzzle": "^7.8",
+        "laravel/pint": "^1.13",
+        "nunomaduro/larastan": "^2.6",
+        "orchestra/testbench": "^8.10",
+        "pestphp/pest-plugin-laravel": "^2.2"
+    },
     "autoload": {
         "psr-4": {
             "Storipress\\Webflow\\": "src/"
@@ -12,19 +25,6 @@
         "psr-4": {
             "Tests\\": "tests/"
         }
-    },
-    "require": {
-        "php": "~8.1",
-        "illuminate/http": "~10.0",
-        "illuminate/support": "~10.0"
-    },
-    "require-dev": {
-        "guzzlehttp/guzzle": "~7.8",
-        "laravel/pint": "~1.13",
-        "nunomaduro/larastan": "~2.6",
-        "ergebnis/composer-normalize": "~2.36",
-        "pestphp/pest-plugin-laravel": "~2.2",
-        "orchestra/testbench": "~8.10"
     },
     "config": {
         "allow-plugins": {
