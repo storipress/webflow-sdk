@@ -21,13 +21,11 @@ abstract class Request
     {
     }
 
-	/**
-	 * @param string $method
-	 * @param string $uri
-	 * @param array<mixed> $options
-	 * @return array<mixed>|null
-	 */
-    protected function request(string $method, string $uri, array $options = []): array|null
+    /**
+     * @param  array<mixed>  $options
+     * @return array<mixed>|null
+     */
+    protected function request(string $method, string $uri, array $options = []): ?array
     {
         $url = sprintf('%s/%s%s', self::ENDPOINT, self::VERSION, $uri);
 
@@ -38,18 +36,15 @@ abstract class Request
             $this->error($response->status(), $response->body(), $response->headers());
         }
 
-		/** @var array<mixed>|null $result */
-		$result = $response->json();
+        /** @var array<mixed>|null $result */
+        $result = $response->json();
 
         return $result;
     }
 
-	/**
-	 * @param int $code
-	 * @param string $message
-	 * @param array<mixed> $headers
-	 * @return void
-	 */
+    /**
+     * @param  array<mixed>  $headers
+     */
     protected function error(int $code, string $message, array $headers): void
     {
         match ($code) {
@@ -65,7 +60,7 @@ abstract class Request
 
             500 => throw new HttpServerError($message),
 
-			default => null,
+            default => null,
         };
     }
 }

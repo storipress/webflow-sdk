@@ -4,15 +4,15 @@ namespace Storipress\Webflow\Objects;
 
 abstract class Attribute
 {
-	/**
-	 * @var array<mixed>
-	 */
+    /**
+     * @var array<mixed>
+     */
     public array $raw;
 
-	/**
-	 * @param array<mixed> $attributes
-	 * @return $this
-	 */
+    /**
+     * @param  array<mixed>  $attributes
+     * @return $this
+     */
     public function map(array $attributes): self
     {
         foreach ($attributes as $key => $value) {
@@ -24,10 +24,10 @@ abstract class Attribute
         return $this;
     }
 
-	/**
-	 * @param array<mixed> $raw
-	 * @return $this
-	 */
+    /**
+     * @param  array<mixed>  $raw
+     * @return $this
+     */
     public function setRaw(array $raw): self
     {
         $this->raw = $raw;

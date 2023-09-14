@@ -20,7 +20,6 @@ use Storipress\Webflow\Objects\Site as SiteObject;
  *          url: string,
  * 	   }>
  * }
- *
  * @phpstan-type PublishData array{
  * 	   customDomains: array<array{
  *	   	    id: string,
@@ -28,53 +27,47 @@ use Storipress\Webflow\Objects\Site as SiteObject;
  * 	   }>,
  * 	   publishToWebflowSubdomain: bool
  * }
- *
  * @phpstan-type PublishResponse array{
  *     customDomains: CustomDomain[],
  *     publishToWebflowSubdomain: bool
  * }
- *
  */
 class Site extends Request
 {
-	/**
-	 * @return SiteObject[]|null
-	 */
-    public function list(): array|null
+    /**
+     * @return SiteObject[]|null
+     */
+    public function list(): ?array
     {
         $data = $this->request('get', '/sites');
 
-		if (is_null($data)) {
-			return null;
-		}
+        if (is_null($data)) {
+            return null;
+        }
 
-		/** @var array{sites: SiteData[]} $data */
+        /** @var array{sites: SiteData[]} $data */
         return $this->mapSitesToObject($data);
     }
 
-	/**
-	 * @return SiteObject|null
-	 */
-    public function get(): SiteObject|null
+    public function get(): ?SiteObject
     {
         $uri = sprintf('/sites/%s', $this->app->siteId);
 
         $data = $this->request('get', $uri);
 
-		if (is_null($data)) {
-			return null;
-		}
+        if (is_null($data)) {
+            return null;
+        }
 
-		/** @var SiteData $data */
+        /** @var SiteData $data */
         return $this->mapSiteToObject($data);
     }
 
-	/**
-	 * @param string[] $customDomains
-	 * @param bool $publishToWebflowSubdomain
-	 * @return PublishResponse|null
-	 */
-    public function publish(array $customDomains = [], bool $publishToWebflowSubdomain = false): array|null
+    /**
+     * @param  string[]  $customDomains
+     * @return PublishResponse|null
+     */
+    public function publish(array $customDomains = [], bool $publishToWebflowSubdomain = false): ?array
     {
         $uri = sprintf('/sites/%s/publish', $this->app->siteId);
 
@@ -83,16 +76,16 @@ class Site extends Request
             'publishToWebflowSubdomain' => $publishToWebflowSubdomain,
         ]);
 
-		if (is_null($data)) {
-			return null;
-		}
+        if (is_null($data)) {
+            return null;
+        }
 
-		/** @var PublishData $data */
+        /** @var PublishData $data */
         return $this->mapPublishDataToObject($data);
     }
 
     /**
-	 * @param array{sites: SiteData[]} $data
+     * @param  array{sites: SiteData[]}  $data
      * @return array<SiteObject>
      */
     protected function mapSitesToObject(array $data): array
@@ -116,19 +109,18 @@ class Site extends Request
         return $sites;
     }
 
-	/**
-	 * @param SiteData $data
-	 * @return SiteObject
-	 */
+    /**
+     * @param  SiteData  $data
+     */
     protected function mapSiteToObject(array $data): SiteObject
     {
         return (new SiteObject())->map($data);
     }
 
-	/**
-	 * @param PublishData $data
-	 * @return PublishResponse
-	 */
+    /**
+     * @param  PublishData  $data
+     * @return PublishResponse
+     */
     protected function mapPublishDataToObject(array $data): array
     {
         $result = [
