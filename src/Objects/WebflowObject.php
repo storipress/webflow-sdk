@@ -2,7 +2,7 @@
 
 namespace Storipress\Webflow\Objects;
 
-abstract class Attribute
+abstract class WebflowObject
 {
     /**
      * @var array<mixed>
