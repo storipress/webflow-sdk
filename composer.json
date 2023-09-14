@@ -1,5 +1,7 @@
 {
     "name": "storipress/webflow",
+    "description": "Webflow API v2 SDK for Laravel",
+    "license": "MIT",
     "type": "library",
     "autoload": {
         "psr-4": {
