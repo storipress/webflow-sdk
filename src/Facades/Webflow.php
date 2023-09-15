@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static \Storipress\Webflow\Requests\Site site()
  * @method static \Storipress\Webflow\Requests\Collection collection()
  * @method static \Storipress\Webflow\Requests\CollectionField collectionField()
+ * @method static \Storipress\Webflow\Requests\Item item()
  */
 class Webflow extends Facade
 {

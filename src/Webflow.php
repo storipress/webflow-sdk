@@ -7,6 +7,7 @@ namespace Storipress\Webflow;
 use Illuminate\Http\Client\Factory;
 use Storipress\Webflow\Requests\Collection;
 use Storipress\Webflow\Requests\CollectionField;
+use Storipress\Webflow\Requests\Item;
 use Storipress\Webflow\Requests\Site;
 
 class Webflow
@@ -17,9 +18,13 @@ class Webflow
 
     public CollectionField $collectionField;
 
+    public Item $item;
+
     public string $siteId;
 
     public string $collectionId;
+
+    public string $itemId;
 
     public function __construct(
         public Factory $http,
@@ -37,6 +42,13 @@ class Webflow
     public function setCollectionId(string $collectionId): self
     {
         $this->collectionId = $collectionId;
+
+        return $this;
+    }
+
+    public function setItemId(string $itemId): self
+    {
+        $this->itemId = $itemId;
 
         return $this;
     }
@@ -80,5 +92,14 @@ class Webflow
         }
 
         return $this->collectionField;
+    }
+
+    public function item(): Item
+    {
+        if (!isset($this->item)) {
+            $this->item = new Item($this);
+        }
+
+        return $this->item;
     }
 }
