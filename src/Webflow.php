@@ -5,13 +5,21 @@ declare(strict_types=1);
 namespace Storipress\Webflow;
 
 use Illuminate\Http\Client\Factory;
+use Storipress\Webflow\Requests\Collection;
+use Storipress\Webflow\Requests\CollectionField;
 use Storipress\Webflow\Requests\Site;
 
 class Webflow
 {
     public Site $site;
 
+    public Collection $collection;
+
+    public CollectionField $collectionField;
+
     public string $siteId;
+
+    public string $collectionId;
 
     public function __construct(
         public Factory $http,
@@ -22,6 +30,13 @@ class Webflow
     public function setSiteId(string $siteId): self
     {
         $this->siteId = $siteId;
+
+        return $this;
+    }
+
+    public function setCollectionId(string $collectionId): self
+    {
+        $this->collectionId = $collectionId;
 
         return $this;
     }
@@ -47,5 +62,23 @@ class Webflow
         }
 
         return $this->site;
+    }
+
+    public function collection(): Collection
+    {
+        if (!isset($this->collection)) {
+            $this->collection = new Collection($this);
+        }
+
+        return $this->collection;
+    }
+
+    public function collectionField(): CollectionField
+    {
+        if (!isset($this->collectionField)) {
+            $this->collectionField = new CollectionField($this);
+        }
+
+        return $this->collectionField;
     }
 }

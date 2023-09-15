@@ -28,7 +28,7 @@ class Site extends Request
         $sites = [];
 
         foreach ($data['sites'] as $site) {
-            $sites[] = (new SiteObject)->from($site);
+            $sites[] = (new SiteObject())->from($site);
         }
 
         return $sites;
@@ -48,7 +48,7 @@ class Site extends Request
             return null;
         }
 
-        return (new SiteObject)->from($data);
+        return (new SiteObject())->from($data);
     }
 
     /**
@@ -70,6 +70,6 @@ class Site extends Request
             return null;
         }
 
-        return (new SiteObject)->from($data);
+        return (new SiteObject())->from($data);
     }
 }

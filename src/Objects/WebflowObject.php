@@ -16,6 +16,10 @@ abstract class WebflowObject
     public function map(array $attributes): self
     {
         foreach ($attributes as $key => $value) {
+            if (is_null($value)) {
+                continue;
+            }
+
             if (property_exists($this, $key)) {
                 $this->{$key} = $value;
             }

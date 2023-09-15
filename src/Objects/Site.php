@@ -53,7 +53,7 @@ class Site extends WebflowObject
         $domains = [];
 
         foreach ($data['customDomains'] as $domain) {
-            $domains[] = (new CustomDomain)->from($domain);
+            $domains[] = (new CustomDomain())->from($domain);
         }
 
         $data['customDomains'] = $domains;
