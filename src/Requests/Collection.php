@@ -23,7 +23,7 @@ class Collection extends Request
         /** @var array{collections: CollectionData[]}|null $data */
         $data = $this->request('get', $uri);
 
-        if (is_null($data)) {
+        if (!is_array($data)) {
             return null;
         }
 
@@ -46,7 +46,7 @@ class Collection extends Request
         /** @var CollectionData|null $data */
         $data = $this->request('post', $uri);
 
-        if (is_null($data)) {
+        if (!is_array($data)) {
             return null;
         }
 
@@ -63,7 +63,7 @@ class Collection extends Request
         /** @var CollectionData|null $data */
         $data = $this->request('get', $uri);
 
-        if (is_null($data)) {
+        if (!is_array($data)) {
             return null;
         }
 

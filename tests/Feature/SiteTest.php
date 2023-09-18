@@ -8,7 +8,9 @@ it('can list sites', function () {
     /** @var Webflow $app */
     $app = app()->make(Webflow::class);
 
-    $sites = $app->site()->list();
+    $sites = $app->setAccessToken(fake()->unique()->sha256())
+        ->site()
+        ->list();
 
     expect($sites)->toHaveCount(2);
 
@@ -42,7 +44,8 @@ it('can get specific site', function () {
     /** @var Webflow $app */
     $app = app()->make(Webflow::class);
 
-    $app->setSiteId('580e63e98c9a982ac9b8b741');
+    $app->setAccessToken(fake()->unique()->sha256())
+        ->setSiteId('580e63e98c9a982ac9b8b741');
 
     $site = $app->site()->get();
 
@@ -73,7 +76,8 @@ it('can publish specific site', function () {
     /** @var Webflow $app */
     $app = app()->make(Webflow::class);
 
-    $app->setSiteId('site_id');
+    $app->setAccessToken(fake()->unique()->sha256())
+        ->setSiteId('site_id');
 
     $site = $app->site()->publish();
 

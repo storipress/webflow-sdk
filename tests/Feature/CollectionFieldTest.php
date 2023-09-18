@@ -7,7 +7,8 @@ it('can create collection field', function () {
     /** @var Webflow $app */
     $app = app()->make(Webflow::class);
 
-    $app->setCollectionId('collection_id');
+    $app->setAccessToken(fake()->unique()->sha256())
+        ->setCollectionId('collection_id');
 
     $field = $app->collectionField()->create(false, 'RichText', 'Post Body');
 
@@ -25,7 +26,8 @@ it('can update collection field', function () {
     /** @var Webflow $app */
     $app = app()->make(Webflow::class);
 
-    $app->setCollectionId('update');
+    $app->setAccessToken(fake()->unique()->sha256())
+        ->setCollectionId('update');
 
     $field = $app->collectionField()->update(
         '75821f618da60c18383330bcc0ca488b',

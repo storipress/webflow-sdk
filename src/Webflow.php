@@ -20,6 +20,8 @@ class Webflow
 
     public Item $item;
 
+    public string $token;
+
     public string $siteId;
 
     public string $collectionId;
@@ -62,7 +64,7 @@ class Webflow
 
     public function setAccessToken(string $token): self
     {
-        $this->http->withToken($token);
+        $this->token = $token;
 
         return $this;
     }

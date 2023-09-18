@@ -31,7 +31,7 @@ class Item extends Request
         /** @var array{items: ItemData[], pagination: PaginationData}|null $data */
         $data = $this->request('get', $uri, $options);
 
-        if (is_null($data)) {
+        if (!is_array($data)) {
             return null;
         }
 
@@ -65,7 +65,7 @@ class Item extends Request
         /** @var ItemData|null $data */
         $data = $this->request('post', $uri, $options);
 
-        if (is_null($data)) {
+        if (!is_array($data)) {
             return null;
         }
 
@@ -79,7 +79,7 @@ class Item extends Request
         /** @var ItemData|null $data */
         $data = $this->request('get', $uri);
 
-        if (is_null($data)) {
+        if (!is_array($data)) {
             return null;
         }
 
@@ -102,7 +102,7 @@ class Item extends Request
         /** @var ItemData|null $data */
         $data = $this->request('patch', $uri, $options);
 
-        if (is_null($data)) {
+        if (!is_array($data)) {
             return null;
         }
 
@@ -113,9 +113,9 @@ class Item extends Request
     {
         $uri = sprintf('/collections/%s/items/%s', $this->app->collectionId, $this->app->itemId);
 
-        $this->request('delete', $uri);
+        $deleted = $this->request('delete', $uri);
 
-        return true;
+        return (!is_bool($deleted)) ? false : $deleted;
     }
 
     /**

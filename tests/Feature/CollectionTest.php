@@ -8,9 +8,12 @@ it('can list collections', function () {
     /** @var Webflow $app */
     $app = app()->make(Webflow::class);
 
-    $app->setSiteId('list');
+    $app->setAccessToken(fake()->unique()->sha256())
+        ->setSiteId('list');
 
     $collections = $app->collection()->list();
+
+    dump($collections);
 
     expect($collections)->toBeArray();
 
@@ -32,7 +35,8 @@ it('can get collection', function () {
     /** @var Webflow $app */
     $app = app()->make(Webflow::class);
 
-    $app->setCollectionId('580e63fc8c9a982ac9b8b745');
+    $app->setAccessToken(fake()->unique()->sha256())
+        ->setCollectionId('580e63fc8c9a982ac9b8b745');
 
     $collection = $app->collection()->get();
 
@@ -50,7 +54,8 @@ it('can create collection', function () {
     /** @var Webflow $app */
     $app = app()->make(Webflow::class);
 
-    $app->setSiteId('create');
+    $app->setAccessToken(fake()->unique()->sha256())
+        ->setSiteId('create');
 
     $collection = $app->collection()->create();
 

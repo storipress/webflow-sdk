@@ -7,7 +7,7 @@ use Storipress\Webflow\Objects\Site as SiteObject;
 
 /**
  * @phpstan-import-type DomainData from CustomDomain
- * @phpstan-import-type SiteData from Site
+ * @phpstan-import-type SiteData from SiteObject
  */
 class Site extends Request
 {
@@ -21,7 +21,7 @@ class Site extends Request
         /** @var array{sites: SiteData[]}|null $data */
         $data = $this->request('get', '/sites');
 
-        if (is_null($data)) {
+        if (!is_array($data)) {
             return null;
         }
 
@@ -44,7 +44,7 @@ class Site extends Request
         /** @var SiteData|null $data */
         $data = $this->request('get', $uri);
 
-        if (is_null($data)) {
+        if (!is_array($data)) {
             return null;
         }
 
@@ -66,7 +66,7 @@ class Site extends Request
             'publishToWebflowSubdomain' => $publishToWebflowSubdomain,
         ]);
 
-        if (is_null($data)) {
+        if (!is_array($data)) {
             return null;
         }
 

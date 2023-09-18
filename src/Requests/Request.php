@@ -15,7 +15,7 @@ use Storipress\Webflow\Webflow;
 
 abstract class Request
 {
-    const VERSION = 'beta';
+    const VERSION = 'v2';
 
     const ENDPOINT = 'https://api.webflow.com';
 
@@ -27,20 +27,26 @@ abstract class Request
 
     /**
      * @param  array<mixed>  $options
-     * @return array<mixed>|null
+     * @return array<mixed>|bool|null
      */
-    protected function request(string $method, string $uri, array $options = []): ?array
+    protected function request(string $method, string $uri, array $options = []): array|bool|null
     {
         $url = sprintf('%s/%s%s', self::ENDPOINT, self::VERSION, $uri);
 
         /** @var Response $response */
-        $response = $this->app->http->{$method}($url, $options);
+        $response = $this->app->http
+            ->withToken($this->app->token)
+            ->{$method}($url, $options);
 
         if (!$response->successful()) {
             $this->error($response->status(), $response->body(), $response->headers());
         }
 
-        /** @var array<mixed>|null $result */
+        if ($method === 'delete') {
+            return $response->successful();
+        }
+
+        /** @var array<mixed> $result */
         $result = $response->json();
 
         return $result;

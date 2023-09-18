@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'api.webflow.com/beta/sites' => [
+    'api.webflow.com/v2/sites' => [
         'sites' => [
             [
                 'id' => '580e63e98c9a982ac9b8b741',
@@ -36,7 +36,7 @@ return [
             ],
         ],
     ],
-    'api.webflow.com/beta/sites/580e63e98c9a982ac9b8b741' => [
+    'api.webflow.com/v2/sites/580e63e98c9a982ac9b8b741' => [
         'id' => '580e63e98c9a982ac9b8b741',
         'workspaceId' => '580e63fc8c9a982ac9b8b744',
         'createdOn' => '2016-10-24T19:41:29.156Z',
@@ -52,7 +52,7 @@ return [
             ],
         ],
     ],
-    'api.webflow.com/beta/sites/site_id/publish' => [
+    'api.webflow.com/v2/sites/site_id/publish' => [
         'customDomains' => [
             [
                 'id' => '589a331aa51e760df7ccb89e',
@@ -64,7 +64,7 @@ return [
         ],
         'publishToWebflowSubdomain' => false,
     ],
-    'api.webflow.com/beta/sites/list/collections' => [
+    'api.webflow.com/v2/sites/list/collections' => [
         'collections' => [
             [
                 'id' => '63692ab61fb2852f582ba8f5',
@@ -92,7 +92,7 @@ return [
             ],
         ],
     ],
-    'api.webflow.com/beta/sites/create/collections' => [
+    'api.webflow.com/v2/sites/create/collections' => [
         'id' => '580e63fc8c9a982ac9b8b745',
         'displayName' => 'Blog Posts',
         'singularName' => 'Blog Post',
@@ -111,7 +111,7 @@ return [
             ],
         ],
     ],
-    'api.webflow.com/beta/collections/580e63fc8c9a982ac9b8b745' => [
+    'api.webflow.com/v2/collections/580e63fc8c9a982ac9b8b745' => [
         'id' => '580e63fc8c9a982ac9b8b745',
         'displayName' => 'Blog Posts',
         'singularName' => 'Blog Post',
@@ -130,7 +130,7 @@ return [
             ],
         ],
     ],
-    'api.webflow.com/beta/collections/collection_id/fields' => [
+    'api.webflow.com/v2/collections/collection_id/fields' => [
         'id' => '75821f618da60c18383330bcc0ca488b',
         'isEditable' => true,
         'isRequired' => false,
@@ -139,7 +139,7 @@ return [
         'displayName' => 'Post Body',
         'helpText' => 'Add the body of your post here',
     ],
-    'api.webflow.com/beta/collections/update/fields/75821f618da60c18383330bcc0ca488b' => [
+    'api.webflow.com/v2/collections/update/fields/75821f618da60c18383330bcc0ca488b' => [
         'id' => '75821f618da60c18383330bcc0ca488b',
         'isEditable' => true,
         'isRequired' => false,
@@ -148,7 +148,7 @@ return [
         'displayName' => 'Post Body',
         'helpText' => 'Add the body of your post here',
     ],
-    'api.webflow.com/beta/collections/list/items' => [
+    'api.webflow.com/v2/collections/list/items' => [
         'items' => [
             [
                 'id' => '62b720ef280c7a7a3be8cabe',
@@ -171,7 +171,7 @@ return [
             'total' => 2,
         ],
     ],
-    'api.webflow.com/beta/collections/create/items' => [
+    'api.webflow.com/v2/collections/create/items' => [
         'id' => '63766b5d283694ddd30bcdce',
         'lastPublished' => '2022-11-29T16:22:43.159Z',
         'lastUpdated' => '2022-11-17T17:19:43.282Z',
@@ -186,7 +186,7 @@ return [
             'color' => '#db4b68',
         ],
     ],
-    'api.webflow.com/beta/collections/get/items/63766b5d283694ddd30bcdce' => [
+    'api.webflow.com/v2/collections/get/items/63766b5d283694ddd30bcdce' => [
         'id' => '63766b5d283694ddd30bcdce',
         'lastPublished' => '2022-11-29T16:22:43.159Z',
         'lastUpdated' => '2022-11-17T17:19:43.282Z',
@@ -201,7 +201,7 @@ return [
             'color' => '#db4b68',
         ],
     ],
-    'api.webflow.com/beta/collections/update/items/63766b5d283694ddd30bcdce' => [
+    'api.webflow.com/v2/collections/update/items/63766b5d283694ddd30bcdce' => [
         'id' => '63766b5d283694ddd30bcdce',
         'lastPublished' => '2022-11-29T16:22:43.159Z',
         'lastUpdated' => '2022-11-17T17:19:43.282Z',
@@ -216,7 +216,7 @@ return [
             'color' => '#db4b68',
         ],
     ],
-    'api.webflow.com/beta/collections/collection_id/items/publish' => [
+    'api.webflow.com/v2/collections/collection_id/items/publish' => [
         'publishedItemIds' => [
             '643fd856d66b6528195ee2ca',
             '643fd856d66b6528195ee2cb',

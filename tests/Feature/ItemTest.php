@@ -9,7 +9,8 @@ it('can list items', function () {
     /** @var Webflow $app */
     $app = app()->make(Webflow::class);
 
-    $app->setCollectionId('list');
+    $app->setAccessToken(fake()->unique()->sha256())
+        ->setCollectionId('list');
 
     $items = $app->item()->list();
 
@@ -20,8 +21,11 @@ it('can list items', function () {
     /** @var array{data: Item[]|null, pagination: Pagination|null} $items */
     $data = Arr::get($items, 'data');
 
+    expect($data)->toBeArray();
+
     expect($data)->toHaveCount(1);
 
+    /** @var Item[] $data */
     expect(Arr::first($data))->toBeInstanceOf(Item::class);
 
     expect($items['pagination'])->toBeInstanceOf(Pagination::class);
@@ -31,7 +35,8 @@ it('can get item', function () {
     /** @var Webflow $app */
     $app = app()->make(Webflow::class);
 
-    $app->setCollectionId('get');
+    $app->setAccessToken(fake()->unique()->sha256())
+        ->setCollectionId('get');
 
     $app->setItemId('63766b5d283694ddd30bcdce');
 
@@ -51,7 +56,8 @@ it('can create item', function () {
     /** @var Webflow $app */
     $app = app()->make(Webflow::class);
 
-    $app->setCollectionId('create');
+    $app->setAccessToken(fake()->unique()->sha256())
+        ->setCollectionId('create');
 
     $item = $app->item()->create(
         fields: [
@@ -81,7 +87,8 @@ it('can update item', function () {
     /** @var Webflow $app */
     $app = app()->make(Webflow::class);
 
-    $app->setCollectionId('update');
+    $app->setAccessToken(fake()->unique()->sha256())
+        ->setCollectionId('update');
 
     $app->setItemId('63766b5d283694ddd30bcdce');
 
@@ -113,7 +120,8 @@ it('can publish item', function () {
     /** @var Webflow $app */
     $app = app()->make(Webflow::class);
 
-    $app->setCollectionId('collection_id');
+    $app->setAccessToken(fake()->unique()->sha256())
+        ->setCollectionId('collection_id');
 
     $result = $app->item()->publish([
         '643fd856d66b6528195ee2ca',

@@ -37,7 +37,7 @@ class CollectionField extends Request
         /** @var CollectionFieldData|null $data */
         $data = $this->request('post', $uri, $options);
 
-        if (is_null($data)) {
+        if (!is_array($data)) {
             return null;
         }
 
@@ -65,7 +65,7 @@ class CollectionField extends Request
         /** @var CollectionFieldData|null $data */
         $data = $this->request('patch', $uri, $options);
 
-        if (is_null($data)) {
+        if (!is_array($data)) {
             return null;
         }
 
@@ -79,8 +79,8 @@ class CollectionField extends Request
     {
         $uri = sprintf('/collections/%s/fields/%s', $this->app->collectionId, $fieldId);
 
-        $data = $this->request('delete', $uri);
+        $deleted = $this->request('delete', $uri);
 
-        return !is_null($data);
+        return !is_bool($deleted) ? false : $deleted;
     }
 }
