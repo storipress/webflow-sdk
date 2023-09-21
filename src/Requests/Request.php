@@ -19,6 +19,8 @@ abstract class Request
 
     const ENDPOINT = 'https://api.webflow.com';
 
+    public array $headers;
+
     public function __construct(
         protected Webflow $app,
     ) {
@@ -38,8 +40,10 @@ abstract class Request
             ->withToken($this->app->token)
             ->{$method}($url, $options);
 
+        $this->headers = $response->headers();
+
         if (!$response->successful()) {
-            $this->error($response->status(), $response->body(), $response->headers());
+            $this->error($response->status(), $response->body());
         }
 
         if ($method === 'delete') {
@@ -55,7 +59,7 @@ abstract class Request
     /**
      * @param  array<mixed>  $headers
      */
-    protected function error(int $code, string $message, array $headers): void
+    protected function error(int $code, string $message): void
     {
         match ($code) {
             400 => throw new HttpBadRequest($message),
@@ -66,7 +70,10 @@ abstract class Request
 
             404 => throw new HttpNotFound($message),
 
-            429 => throw new HttpHitRateLimit($message),
+            429 => throw new HttpHitRateLimit(
+                retryAfter: $this->headers['X-Ratelimit-Reset'][0] - time(),
+                message: $message
+            ),
 
             500 => throw new HttpServerError($message),
 

@@ -29,6 +29,9 @@ class CollectionField extends WebflowObject
 
     public string $helpText;
 
+    /** @var array<mixed> */
+    public array $validations;
+
     /**
      * @param  CollectionFieldData  $data
      */

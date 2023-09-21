@@ -13,8 +13,6 @@ it('can list collections', function () {
 
     $collections = $app->collection()->list();
 
-    dump($collections);
-
     expect($collections)->toBeArray();
 
     expect($collections)->toHaveCount(3);

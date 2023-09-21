@@ -30,14 +30,16 @@ class Site extends WebflowObject
 
     public string $shortName;
 
-    public string $lastPublished;
+    public ?string $lastPublished;
 
     public string $previewUrl;
 
     public string $timezone;
 
+    public string $defaultDomain;
+
     /**
-     * @var array<array<CustomDomain>>
+     * @var array<CustomDomain>
      */
     public array $customDomains;
 
@@ -59,6 +61,10 @@ class Site extends WebflowObject
         $data['customDomains'] = $domains;
 
         $this->map($data);
+
+        if (isset($this->shortName)) {
+            $this->defaultDomain = sprintf('%s.webflow.io', $this->shortName);
+        }
 
         if (isset($data['publishToWebflowSubdomain'])) {
             $this->publishToWebflowSubdomain = $data['publishToWebflowSubdomain'];

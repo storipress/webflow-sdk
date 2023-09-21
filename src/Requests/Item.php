@@ -94,8 +94,11 @@ class Item extends Request
         $options = [
             'isArchived' => $isArchived,
             'isDraft' => $isDraft,
-            'fieldData' => $fields,
         ];
+
+        if (!empty($fields)) {
+            $options['fieldData'] = $fields;
+        }
 
         $uri = sprintf('/collections/%s/items/%s', $this->app->collectionId, $this->app->itemId);
 
