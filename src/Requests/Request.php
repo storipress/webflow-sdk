@@ -19,6 +19,9 @@ abstract class Request
 
     const ENDPOINT = 'https://api.webflow.com';
 
+    /**
+     * @var array<array<int, mixed>>
+     */
     public array $headers;
 
     public function __construct(
@@ -56,9 +59,6 @@ abstract class Request
         return $result;
     }
 
-    /**
-     * @param  array<mixed>  $headers
-     */
     protected function error(int $code, string $message): void
     {
         match ($code) {
