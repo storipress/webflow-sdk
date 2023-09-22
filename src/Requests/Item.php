@@ -4,6 +4,7 @@ namespace Storipress\Webflow\Requests;
 
 use Storipress\Webflow\Objects\Item as ItemObject;
 use Storipress\Webflow\Objects\Pagination;
+use Webmozart\Assert\Assert;
 
 /**
  * @phpstan-import-type ItemData from ItemObject
@@ -12,9 +13,9 @@ use Storipress\Webflow\Objects\Pagination;
 class Item extends Request
 {
     /**
-     * @return array{data: ItemObject[], pagination: Pagination}|null
+     * @return array{data: ItemObject[], pagination: Pagination}
      */
-    public function list(int $offset = null, int $limit = null): ?array
+    public function list(int $offset = null, int $limit = null): array
     {
         $options = [];
 
@@ -31,9 +32,11 @@ class Item extends Request
         /** @var array{items: ItemData[], pagination: PaginationData}|null $data */
         $data = $this->request('get', $uri, $options);
 
-        if (!is_array($data)) {
-            return null;
-        }
+        Assert::isArray($data);
+
+        Assert::keyExists($data, 'items');
+
+        Assert::keyExists($data, 'pagination');
 
         $items = [];
 
@@ -52,7 +55,7 @@ class Item extends Request
     /**
      * @param  array<mixed>  $fields
      */
-    public function create(bool $isArchived = false, bool $isDraft = false, array $fields = []): ?ItemObject
+    public function create(bool $isArchived = false, bool $isDraft = false, array $fields = []): ItemObject
     {
         $options = [
             'isArchived' => $isArchived,
@@ -65,23 +68,19 @@ class Item extends Request
         /** @var ItemData|null $data */
         $data = $this->request('post', $uri, $options);
 
-        if (!is_array($data)) {
-            return null;
-        }
+        Assert::isArray($data);
 
         return (new ItemObject())->from($data);
     }
 
-    public function get(): ?ItemObject
+    public function get(): ItemObject
     {
         $uri = sprintf('/collections/%s/items/%s', $this->app->collectionId, $this->app->itemId);
 
         /** @var ItemData|null $data */
         $data = $this->request('get', $uri);
 
-        if (!is_array($data)) {
-            return null;
-        }
+        Assert::isArray($data);
 
         return (new ItemObject())->from($data);
     }
@@ -105,9 +104,7 @@ class Item extends Request
         /** @var ItemData|null $data */
         $data = $this->request('patch', $uri, $options);
 
-        if (!is_array($data)) {
-            return null;
-        }
+        Assert::isArray($data);
 
         return (new ItemObject())->from($data);
     }
@@ -135,6 +132,12 @@ class Item extends Request
 
         /** @var array{publishedItemIds: string[], errors: string[]} $data */
         $data = $this->request('post', $uri, $options);
+
+        Assert::isArray($data);
+
+        Assert::keyExists($data, 'publishedItemIds');
+
+        Assert::keyExists($data, 'errors');
 
         return $data;
     }

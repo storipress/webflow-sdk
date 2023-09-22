@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Storipress\Webflow\Requests;
 
 use Storipress\Webflow\Objects\CollectionField as CollectionFieldObject;
+use Webmozart\Assert\Assert;
 
 /**
  * @phpstan-import-type CollectionFieldData from CollectionFieldObject
@@ -13,10 +14,8 @@ class CollectionField extends Request
 {
     /**
      * https://developers.webflow.com/reference/create-field
-     *
-     * @return CollectionFieldObject|null
      */
-    public function create(bool $isRequired, string $type, string $displayName, string $slug = null, string $helpText = null)
+    public function create(bool $isRequired, string $type, string $displayName, string $slug = null, string $helpText = null): CollectionFieldObject
     {
         $uri = sprintf('/collections/%s/fields', $this->app->collectionId);
 
@@ -37,19 +36,15 @@ class CollectionField extends Request
         /** @var CollectionFieldData|null $data */
         $data = $this->request('post', $uri, $options);
 
-        if (!is_array($data)) {
-            return null;
-        }
+        Assert::isArray($data);
 
         return (new CollectionFieldObject())->from($data);
     }
 
     /**
      * https://developers.webflow.com/reference/update-field
-     *
-     * @return CollectionFieldObject|null
      */
-    public function update(string $fieldId, bool $isRequired, string $displayName, string $helpText = null)
+    public function update(string $fieldId, bool $isRequired, string $displayName, string $helpText = null): CollectionFieldObject
     {
         $uri = sprintf('/collections/%s/fields/%s', $this->app->collectionId, $fieldId);
 
@@ -65,9 +60,7 @@ class CollectionField extends Request
         /** @var CollectionFieldData|null $data */
         $data = $this->request('patch', $uri, $options);
 
-        if (!is_array($data)) {
-            return null;
-        }
+        Assert::isArray($data);
 
         return (new CollectionFieldObject())->from($data);
     }

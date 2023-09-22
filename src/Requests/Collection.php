@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Storipress\Webflow\Requests;
 
 use Storipress\Webflow\Objects\Collection as CollectionObject;
+use Webmozart\Assert\Assert;
 
 /**
  * @phpstan-import-type CollectionData from CollectionObject
@@ -14,18 +15,18 @@ class Collection extends Request
     /**
      * https://developers.webflow.com/reference/list-collections
      *
-     * @return CollectionObject[]|null
+     * @return CollectionObject[]
      */
-    public function list(): ?array
+    public function list(): array
     {
         $uri = sprintf('/sites/%s/collections', $this->app->siteId);
 
         /** @var array{collections: CollectionData[]}|null $data */
         $data = $this->request('get', $uri);
 
-        if (!is_array($data)) {
-            return null;
-        }
+        Assert::isArray($data);
+
+        Assert::keyExists($data, 'collections');
 
         $collections = [];
 
@@ -39,16 +40,14 @@ class Collection extends Request
     /**
      * https://developers.webflow.com/reference/create-collection
      */
-    public function create(): ?CollectionObject
+    public function create(): CollectionObject
     {
         $uri = sprintf('/sites/%s/collections', $this->app->siteId);
 
         /** @var CollectionData|null $data */
         $data = $this->request('post', $uri);
 
-        if (!is_array($data)) {
-            return null;
-        }
+        Assert::isArray($data);
 
         return (new CollectionObject())->from($data);
     }
@@ -56,16 +55,14 @@ class Collection extends Request
     /**
      * https://developers.webflow.com/reference/collection-details
      */
-    public function get(): ?CollectionObject
+    public function get(): CollectionObject
     {
         $uri = sprintf('/collections/%s', $this->app->collectionId);
 
         /** @var CollectionData|null $data */
         $data = $this->request('get', $uri);
 
-        if (!is_array($data)) {
-            return null;
-        }
+        Assert::isArray($data);
 
         return (new CollectionObject())->from($data);
     }
