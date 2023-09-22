@@ -88,7 +88,7 @@ class Item extends Request
     /**
      * @param  array<mixed>  $fields
      */
-    public function update(string $collectionId, string $itemId, bool $isArchived = false, bool $isDraft = false, array $fields = []): ?ItemObject
+    public function update(string $collectionId, string $itemId, bool $isArchived = false, bool $isDraft = false, array $fields = []): ItemObject
     {
         $options = [
             'isArchived' => $isArchived,
