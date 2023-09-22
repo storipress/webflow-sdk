@@ -15,7 +15,7 @@ class Item extends Request
     /**
      * @return array{data: ItemObject[], pagination: Pagination}
      */
-    public function list(int $offset = null, int $limit = null): array
+    public function list(string $collectionId, int $offset = null, int $limit = null): array
     {
         $options = [];
 
@@ -27,7 +27,7 @@ class Item extends Request
             $options['limit'] = $limit;
         }
 
-        $uri = sprintf('/collections/%s/items', $this->app->collectionId);
+        $uri = sprintf('/collections/%s/items', $collectionId);
 
         /** @var array{items: ItemData[], pagination: PaginationData}|null $data */
         $data = $this->request('get', $uri, $options);
@@ -55,7 +55,7 @@ class Item extends Request
     /**
      * @param  array<mixed>  $fields
      */
-    public function create(bool $isArchived = false, bool $isDraft = false, array $fields = []): ItemObject
+    public function create(string $collectionId, bool $isArchived = false, bool $isDraft = false, array $fields = []): ItemObject
     {
         $options = [
             'isArchived' => $isArchived,
@@ -63,7 +63,7 @@ class Item extends Request
             'fieldData' => $fields,
         ];
 
-        $uri = sprintf('/collections/%s/items', $this->app->collectionId);
+        $uri = sprintf('/collections/%s/items', $collectionId);
 
         /** @var ItemData|null $data */
         $data = $this->request('post', $uri, $options);
@@ -73,9 +73,9 @@ class Item extends Request
         return (new ItemObject())->from($data);
     }
 
-    public function get(): ItemObject
+    public function get(string $collectionId, string $itemId): ItemObject
     {
-        $uri = sprintf('/collections/%s/items/%s', $this->app->collectionId, $this->app->itemId);
+        $uri = sprintf('/collections/%s/items/%s', $collectionId, $itemId);
 
         /** @var ItemData|null $data */
         $data = $this->request('get', $uri);
@@ -88,7 +88,7 @@ class Item extends Request
     /**
      * @param  array<mixed>  $fields
      */
-    public function update(bool $isArchived = false, bool $isDraft = false, array $fields = []): ?ItemObject
+    public function update(string $collectionId, string $itemId, bool $isArchived = false, bool $isDraft = false, array $fields = []): ?ItemObject
     {
         $options = [
             'isArchived' => $isArchived,
@@ -99,7 +99,7 @@ class Item extends Request
             $options['fieldData'] = $fields;
         }
 
-        $uri = sprintf('/collections/%s/items/%s', $this->app->collectionId, $this->app->itemId);
+        $uri = sprintf('/collections/%s/items/%s', $collectionId, $itemId);
 
         /** @var ItemData|null $data */
         $data = $this->request('patch', $uri, $options);
@@ -109,9 +109,9 @@ class Item extends Request
         return (new ItemObject())->from($data);
     }
 
-    public function delete(): bool
+    public function delete(string $collectionId, string $itemId): bool
     {
-        $uri = sprintf('/collections/%s/items/%s', $this->app->collectionId, $this->app->itemId);
+        $uri = sprintf('/collections/%s/items/%s', $collectionId, $itemId);
 
         $deleted = $this->request('delete', $uri);
 
@@ -122,9 +122,9 @@ class Item extends Request
      * @param  string[]  $itemIds
      * @return array{publishedItemIds: string[], errors: string[]}
      */
-    public function publish(array $itemIds = []): array
+    public function publish(string $collectionId, array $itemIds = []): array
     {
-        $uri = sprintf('/collections/%s/items/publish', $this->app->collectionId);
+        $uri = sprintf('/collections/%s/items/publish', $collectionId);
 
         $options = [
             'itemIds' => $itemIds,

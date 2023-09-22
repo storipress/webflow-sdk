@@ -24,10 +24,6 @@ class Webflow
 
     public string $siteId;
 
-    public string $collectionId;
-
-    public string $itemId;
-
     public function __construct(
         public Factory $http,
     ) {
@@ -37,20 +33,6 @@ class Webflow
     public function setSiteId(string $siteId): self
     {
         $this->siteId = $siteId;
-
-        return $this;
-    }
-
-    public function setCollectionId(string $collectionId): self
-    {
-        $this->collectionId = $collectionId;
-
-        return $this;
-    }
-
-    public function setItemId(string $itemId): self
-    {
-        $this->itemId = $itemId;
 
         return $this;
     }

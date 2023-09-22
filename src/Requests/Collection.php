@@ -55,9 +55,9 @@ class Collection extends Request
     /**
      * https://developers.webflow.com/reference/collection-details
      */
-    public function get(): CollectionObject
+    public function get(string $collectionId): CollectionObject
     {
-        $uri = sprintf('/collections/%s', $this->app->collectionId);
+        $uri = sprintf('/collections/%s', $collectionId);
 
         /** @var CollectionData|null $data */
         $data = $this->request('get', $uri);

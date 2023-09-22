@@ -9,10 +9,9 @@ it('can list items', function () {
     /** @var Webflow $app */
     $app = app()->make(Webflow::class);
 
-    $app->setAccessToken(fake()->unique()->sha256())
-        ->setCollectionId('list');
+    $app->setAccessToken(fake()->unique()->sha256());
 
-    $items = $app->item()->list();
+    $items = $app->item()->list('list');
 
     expect($items)->toHaveKey('data');
 
@@ -35,12 +34,9 @@ it('can get item', function () {
     /** @var Webflow $app */
     $app = app()->make(Webflow::class);
 
-    $app->setAccessToken(fake()->unique()->sha256())
-        ->setCollectionId('get');
+    $app->setAccessToken(fake()->unique()->sha256());
 
-    $app->setItemId('63766b5d283694ddd30bcdce');
-
-    $item = $app->item()->get();
+    $item = $app->item()->get('get', '63766b5d283694ddd30bcdce');
 
     /** @var Item $item */
     expect($item)->toBeInstanceOf(Item::class);
@@ -56,10 +52,10 @@ it('can create item', function () {
     /** @var Webflow $app */
     $app = app()->make(Webflow::class);
 
-    $app->setAccessToken(fake()->unique()->sha256())
-        ->setCollectionId('create');
+    $app->setAccessToken(fake()->unique()->sha256());
 
     $item = $app->item()->create(
+        collectionId: 'create',
         fields: [
             'date' => '2022-11-18T00:00:00.000Z',
             'featured' => false,
@@ -87,12 +83,11 @@ it('can update item', function () {
     /** @var Webflow $app */
     $app = app()->make(Webflow::class);
 
-    $app->setAccessToken(fake()->unique()->sha256())
-        ->setCollectionId('update');
-
-    $app->setItemId('63766b5d283694ddd30bcdce');
+    $app->setAccessToken(fake()->unique()->sha256());
 
     $item = $app->item()->update(
+        collectionId: 'update',
+        itemId: '63766b5d283694ddd30bcdce',
         fields: [
             'date' => '2022-11-18T00:00:00.000Z',
             'featured' => false,
@@ -120,14 +115,16 @@ it('can publish item', function () {
     /** @var Webflow $app */
     $app = app()->make(Webflow::class);
 
-    $app->setAccessToken(fake()->unique()->sha256())
-        ->setCollectionId('collection_id');
+    $app->setAccessToken(fake()->unique()->sha256());
 
-    $result = $app->item()->publish([
-        '643fd856d66b6528195ee2ca',
-        '643fd856d66b6528195ee2cb',
-        '643fd856d66b6528195ee2cf',
-    ]);
+    $result = $app->item()->publish(
+        'collection_id',
+        [
+            '643fd856d66b6528195ee2ca',
+            '643fd856d66b6528195ee2cb',
+            '643fd856d66b6528195ee2cf',
+        ]
+    );
 
     expect($result)->toBeArray();
 

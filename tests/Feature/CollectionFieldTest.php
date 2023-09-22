@@ -7,10 +7,9 @@ it('can create collection field', function () {
     /** @var Webflow $app */
     $app = app()->make(Webflow::class);
 
-    $app->setAccessToken(fake()->unique()->sha256())
-        ->setCollectionId('collection_id');
+    $app->setAccessToken(fake()->unique()->sha256());
 
-    $field = $app->collectionField()->create(false, 'RichText', 'Post Body');
+    $field = $app->collectionField()->create('collection_id', false, 'RichText', 'Post Body');
 
     expect($field)->toBeInstanceOf(CollectionField::class);
 
@@ -26,10 +25,10 @@ it('can update collection field', function () {
     /** @var Webflow $app */
     $app = app()->make(Webflow::class);
 
-    $app->setAccessToken(fake()->unique()->sha256())
-        ->setCollectionId('update');
+    $app->setAccessToken(fake()->unique()->sha256());
 
     $field = $app->collectionField()->update(
+        'update',
         '75821f618da60c18383330bcc0ca488b',
         false,
         'RichText',

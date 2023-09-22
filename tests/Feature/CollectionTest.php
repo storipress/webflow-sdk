@@ -33,10 +33,9 @@ it('can get collection', function () {
     /** @var Webflow $app */
     $app = app()->make(Webflow::class);
 
-    $app->setAccessToken(fake()->unique()->sha256())
-        ->setCollectionId('580e63fc8c9a982ac9b8b745');
+    $app->setAccessToken(fake()->unique()->sha256());
 
-    $collection = $app->collection()->get();
+    $collection = $app->collection()->get('580e63fc8c9a982ac9b8b745');
 
     expect($collection)->toBeInstanceOf(Collection::class);
 

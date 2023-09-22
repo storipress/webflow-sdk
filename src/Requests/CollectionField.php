@@ -15,9 +15,9 @@ class CollectionField extends Request
     /**
      * https://developers.webflow.com/reference/create-field
      */
-    public function create(bool $isRequired, string $type, string $displayName, string $slug = null, string $helpText = null): CollectionFieldObject
+    public function create(string $collectionId, bool $isRequired, string $type, string $displayName, string $slug = null, string $helpText = null): CollectionFieldObject
     {
-        $uri = sprintf('/collections/%s/fields', $this->app->collectionId);
+        $uri = sprintf('/collections/%s/fields', $collectionId);
 
         $options = [
             'isRequired' => $isRequired,
@@ -44,9 +44,9 @@ class CollectionField extends Request
     /**
      * https://developers.webflow.com/reference/update-field
      */
-    public function update(string $fieldId, bool $isRequired, string $displayName, string $helpText = null): CollectionFieldObject
+    public function update(string $collectionId, string $fieldId, bool $isRequired, string $displayName, string $helpText = null): CollectionFieldObject
     {
-        $uri = sprintf('/collections/%s/fields/%s', $this->app->collectionId, $fieldId);
+        $uri = sprintf('/collections/%s/fields/%s', $collectionId, $fieldId);
 
         $options = [
             'isRequired' => $isRequired,
@@ -68,9 +68,9 @@ class CollectionField extends Request
     /**
      * https://developers.webflow.com/reference/delete-field
      */
-    public function delete(string $fieldId): bool
+    public function delete(string $collectionId, string $fieldId): bool
     {
-        $uri = sprintf('/collections/%s/fields/%s', $this->app->collectionId, $fieldId);
+        $uri = sprintf('/collections/%s/fields/%s', $collectionId, $fieldId);
 
         $deleted = $this->request('delete', $uri);
 
