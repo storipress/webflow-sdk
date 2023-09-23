@@ -9,7 +9,7 @@ use Throwable;
 class HttpHitRateLimit extends HttpException
 {
     public function __construct(
-        public readonly ?int $retryAfter = null,
+        public readonly int $retryAfter,
         string $message = '',
         int $code = 0,
         Throwable $previous = null,

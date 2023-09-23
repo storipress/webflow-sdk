@@ -8,8 +8,14 @@ use stdClass;
 
 class Site extends WebflowObject
 {
+    /**
+     * @var non-empty-string
+     */
     public string $id;
 
+    /**
+     * @var non-empty-string
+     */
     public string $createdOn;
 
     /**
@@ -19,26 +25,51 @@ class Site extends WebflowObject
 
     /**
      * @todo need-explain
+     *
+     * @var non-empty-string
      */
     public string $defaultDomain;
 
+    /**
+     * @var non-empty-string
+     */
     public string $displayName;
 
+    /**
+     * @var non-empty-string|null
+     */
     public ?string $lastPublished;
 
+    /**
+     * @var non-empty-string
+     */
     public string $lastUpdated;
 
     /**
      * @todo need-explain
+     *
+     * @var non-empty-string|null
      */
     public ?string $locales;
 
+    /**
+     * @var non-empty-string|null
+     */
     public ?string $previewUrl;
 
+    /**
+     * @var non-empty-string
+     */
     public string $shortName;
 
+    /**
+     * @var non-empty-string
+     */
     public string $timeZone;
 
+    /**
+     * @var non-empty-string
+     */
     public string $workspaceId;
 
     public static function from(stdClass $data): static

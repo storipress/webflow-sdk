@@ -8,8 +8,14 @@ use stdClass;
 
 class Item extends WebflowObject
 {
+    /**
+     * @var non-empty-string
+     */
     public string $id;
 
+    /**
+     * @var non-empty-string
+     */
     public string $createdOn;
 
     public stdClass $fieldData;
@@ -18,7 +24,13 @@ class Item extends WebflowObject
 
     public bool $isDraft;
 
+    /**
+     * @var non-empty-string|null
+     */
     public ?string $lastPublished;
 
+    /**
+     * @var non-empty-string
+     */
     public string $lastUpdated;
 }
