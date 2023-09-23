@@ -2,22 +2,18 @@
 
 use Storipress\Webflow\Objects\Collection;
 use Storipress\Webflow\Objects\CollectionField;
-use Storipress\Webflow\Webflow;
 
 it('can list collections', function () {
-    /** @var Webflow $app */
-    $app = app()->make(Webflow::class);
-
-    $app->setAccessToken(fake()->unique()->sha256())
-        ->setSiteId('list');
-
-    $collections = $app->collection()->list();
+    $collections = $this
+        ->webflow
+        ->setSiteId('list')
+        ->collection
+        ->list();
 
     expect($collections)->toBeArray();
 
     expect($collections)->toHaveCount(3);
 
-    /** @var Collection[] $collections */
     $collection = $collections[0];
 
     expect($collection)->toBeInstanceOf(Collection::class);
@@ -30,16 +26,13 @@ it('can list collections', function () {
 });
 
 it('can get collection', function () {
-    /** @var Webflow $app */
-    $app = app()->make(Webflow::class);
-
-    $app->setAccessToken(fake()->unique()->sha256());
-
-    $collection = $app->collection()->get('580e63fc8c9a982ac9b8b745');
+    $collection = $this
+        ->webflow
+        ->collection
+        ->get('580e63fc8c9a982ac9b8b745');
 
     expect($collection)->toBeInstanceOf(Collection::class);
 
-    /** @var Collection $collection */
     expect($collection->id)->toBe('580e63fc8c9a982ac9b8b745');
 
     expect($collection->displayName)->toBe('Blog Posts');
@@ -48,17 +41,13 @@ it('can get collection', function () {
 });
 
 it('can create collection', function () {
-    /** @var Webflow $app */
-    $app = app()->make(Webflow::class);
-
-    $app->setAccessToken(fake()->unique()->sha256())
-        ->setSiteId('create');
-
-    $collection = $app->collection()->create();
+    $collection = $this
+        ->webflow
+        ->collection
+        ->create();
 
     expect($collection)->toBeInstanceOf(Collection::class);
 
-    /** @var Collection $collection */
     expect($collection->id)->toBe('580e63fc8c9a982ac9b8b745');
 
     expect($collection->displayName)->toBe('Blog Posts');

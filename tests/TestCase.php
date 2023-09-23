@@ -2,14 +2,25 @@
 
 namespace Tests;
 
+use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\Facades\Http;
 use Orchestra\Testbench\TestCase as BaseTestCase;
+use Storipress\Webflow\Webflow;
 
 class TestCase extends BaseTestCase
 {
+    public Webflow $webflow;
+
     protected function setUp(): void
     {
         parent::setUp();
+
+        $this->assertNotNull($this->app);
+
+        $this->webflow = $this->app
+            ->make(Webflow::class)
+            ->setAccessToken(fake()->unique()->sha256());
 
         Http::preventStrayRequests();
 
@@ -21,10 +32,10 @@ class TestCase extends BaseTestCase
     /**
      * Override application aliases.
      *
-     * @param  \Illuminate\Foundation\Application  $app
-     * @return array<string, class-string<\Illuminate\Support\Facades\Facade>>
+     * @param  Application  $app
+     * @return array<non-empty-string, class-string<Facade>>
      */
-    protected function getPackageAliases($app)
+    protected function getPackageAliases($app): array
     {
         return [
             'Http' => Http::class,
