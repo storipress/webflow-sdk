@@ -21,6 +21,7 @@ use Storipress\Webflow\Requests\Site;
  * @method static int rateLimitRemaining()
  * @method static \Storipress\Webflow\Webflow setSiteId(string $siteId)
  * @method static \Storipress\Webflow\Webflow setToken(string $token)
+ * @method static \Storipress\Webflow\Webflow instance()
  */
 class Webflow extends Facade
 {

@@ -116,7 +116,7 @@ abstract class Request
     /**
      * @throws UnexpectedValueException
      */
-    protected function validate(object $data, string $schema): void
+    protected function validate(stdClass $data, string $schema): void
     {
         $file = realpath(
             sprintf('%s/../Schemas/%s.json', __DIR__, $schema),

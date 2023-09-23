@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Storipress\Webflow\Objects;
 
+use stdClass;
+
 class CollectionField extends WebflowObject
 {
     public string $id;
@@ -20,5 +22,5 @@ class CollectionField extends WebflowObject
 
     public string $type;
 
-    public object $validations;
+    public stdClass $validations;
 }
