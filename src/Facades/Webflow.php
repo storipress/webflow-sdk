@@ -19,8 +19,8 @@ use Storipress\Webflow\Requests\Site;
  * @method static string siteId()
  * @method static int retryAfter()
  * @method static int rateLimitRemaining()
- * @method static \Storipress\Webflow\Webflow setSiteId()
- * @method static \Storipress\Webflow\Webflow setAccessToken()
+ * @method static \Storipress\Webflow\Webflow setSiteId(string $siteId)
+ * @method static \Storipress\Webflow\Webflow setToken(string $token)
  */
 class Webflow extends Facade
 {
