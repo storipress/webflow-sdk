@@ -24,7 +24,7 @@ class TestCase extends BaseTestCase
         $this->webflow = $this
             ->app
             ->make(Webflow::class)
-            ->setAccessToken($token);
+            ->setToken($token);
 
         Http::preventStrayRequests();
 
