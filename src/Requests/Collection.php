@@ -21,7 +21,7 @@ class Collection extends Request
      */
     public function list(string $siteId = null): array
     {
-        $uri = sprintf('/sites/%s/collections', $siteId ?: $this->app->siteId);
+        $uri = sprintf('/sites/%s/collections', $siteId ?: $this->app->siteId());
 
         $data = $this->request('get', $uri, schema: 'list-collections');
 
@@ -43,7 +43,7 @@ class Collection extends Request
         string $singularName,
         string $slug = null,
     ): CollectionObject {
-        $uri = sprintf('/sites/%s/collections', $siteId ?: $this->app->siteId);
+        $uri = sprintf('/sites/%s/collections', $siteId ?: $this->app->siteId());
 
         $data = $this->request(
             'post',

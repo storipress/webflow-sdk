@@ -52,7 +52,7 @@ abstract class Request
         $response = $this
             ->app
             ->http
-            ->withToken($this->app->token)
+            ->withToken($this->app->token())
             ->{$method}($this->getUrl($path), $options);
 
         if (!($response instanceof Response)) {
@@ -104,9 +104,13 @@ abstract class Request
 
     protected function setRateLimit(Response $response): void
     {
-        $this->app->retryAfter = (int) $response->header('Retry-After');
+        $this->app->setRetryAfter(
+            (int) $response->header('Retry-After'),
+        );
 
-        $this->app->rateLimitRemaining = (int) $response->header('X-RateLimit-Remaining');
+        $this->app->setRateLimitRemaining(
+            (int) $response->header('X-RateLimit-Remaining'),
+        );
     }
 
     /**

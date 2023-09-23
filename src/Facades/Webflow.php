@@ -11,16 +11,16 @@ use Storipress\Webflow\Requests\Item;
 use Storipress\Webflow\Requests\Site;
 
 /**
- * @property-read Site $site
- * @property-read Collection $collection
- * @property-read CollectionField $collectionField
- * @property-read Item $item
- * @property-read string $token
- * @property-read string $siteId
- * @property-read int $retryAfter
- * @property-read int $rateLimitRemaining
- * @method static static setSiteId()
- * @method static static setAccessToken()
+ * @method static Site site()
+ * @method static Collection collection()
+ * @method static CollectionField collectionField()
+ * @method static Item item()
+ * @method static string token()
+ * @method static string siteId()
+ * @method static int retryAfter()
+ * @method static int rateLimitRemaining()
+ * @method static \Storipress\Webflow\Webflow setSiteId()
+ * @method static \Storipress\Webflow\Webflow setAccessToken()
  */
 class Webflow extends Facade
 {

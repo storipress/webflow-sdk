@@ -12,21 +12,21 @@ use Storipress\Webflow\Requests\Site;
 
 class Webflow
 {
-    public readonly Site $site;
+    protected readonly Site $site;
 
-    public readonly Collection $collection;
+    protected readonly Collection $collection;
 
-    public readonly CollectionField $collectionField;
+    protected readonly CollectionField $collectionField;
 
-    public readonly Item $item;
+    protected readonly Item $item;
 
-    public string $token;
+    protected string $token;
 
-    public string $siteId;
+    protected string $siteId;
 
-    public int $retryAfter = 60;
+    protected int $retryAfter = 60;
 
-    public int $rateLimitRemaining = 60;
+    protected int $rateLimitRemaining = 60;
 
     public function __construct(
         public Factory $http,
@@ -40,23 +40,82 @@ class Webflow
         $this->item = new Item($this);
     }
 
-    /**
-     * @param  non-empty-string  $siteId
-     */
-    public function setSiteId(string $siteId): self
+    public function instance(): static
     {
-        $this->siteId = $siteId;
-
         return $this;
     }
 
     /**
      * @param  non-empty-string  $token
      */
-    public function setAccessToken(string $token): self
+    public function setToken(string $token): static
     {
         $this->token = $token;
 
         return $this;
+    }
+
+    public function token(): string
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param  non-empty-string  $siteId
+     */
+    public function setSiteId(string $siteId): static
+    {
+        $this->siteId = $siteId;
+
+        return $this;
+    }
+
+    public function siteId(): string
+    {
+        return $this->siteId;
+    }
+
+    public function setRetryAfter(int $retryAfter): Webflow
+    {
+        $this->retryAfter = $retryAfter;
+
+        return $this;
+    }
+
+    public function retryAfter(): int
+    {
+        return $this->retryAfter;
+    }
+
+    public function setRateLimitRemaining(int $rateLimitRemaining): Webflow
+    {
+        $this->rateLimitRemaining = $rateLimitRemaining;
+
+        return $this;
+    }
+
+    public function rateLimitRemaining(): int
+    {
+        return $this->rateLimitRemaining;
+    }
+
+    public function site(): Site
+    {
+        return $this->site;
+    }
+
+    public function collection(): Collection
+    {
+        return $this->collection;
+    }
+
+    public function collectionField(): CollectionField
+    {
+        return $this->collectionField;
+    }
+
+    public function item(): Item
+    {
+        return $this->item;
     }
 }

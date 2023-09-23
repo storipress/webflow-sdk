@@ -42,7 +42,7 @@ class Site extends Request
      */
     public function get(string $siteId = null): SiteObject
     {
-        $uri = sprintf('/sites/%s', $siteId ?: $this->app->siteId);
+        $uri = sprintf('/sites/%s', $siteId ?: $this->app->siteId());
 
         $data = $this->request('get', $uri, schema: 'get-site');
 
@@ -63,7 +63,7 @@ class Site extends Request
      */
     public function publish(string $siteId = null, array $customDomains = [], bool $publishToWebflowSubdomain = false): stdClass
     {
-        $uri = sprintf('/sites/%s/publish', $siteId ?: $this->app->siteId);
+        $uri = sprintf('/sites/%s/publish', $siteId ?: $this->app->siteId());
 
         $data = $this->request(
             'post',
