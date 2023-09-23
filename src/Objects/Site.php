@@ -6,23 +6,6 @@ namespace Storipress\Webflow\Objects;
 
 use stdClass;
 
-/**
- * @phpstan-import-type DomainData from CustomDomain
- *
- * @phpstan-type SiteData array{
- *     id: non-empty-string,
- *     createdOn: non-empty-string,
- *     customDomains: array<int, DomainData>,
- *     displayName: non-empty-string,
- *     lastPublished: non-empty-string|null,
- *     lastUpdated: non-empty-string,
- *     locales: null,
- *     previewUrl: non-empty-string|null,
- *     shortName: non-empty-string,
- *     timeZone: non-empty-string,
- *     workspaceId: non-empty-string,
- * }
- */
 class Site extends WebflowObject
 {
     public string $id;

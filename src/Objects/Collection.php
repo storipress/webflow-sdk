@@ -6,19 +6,6 @@ namespace Storipress\Webflow\Objects;
 
 use stdClass;
 
-/**
- * @phpstan-import-type CollectionFieldData from CollectionField
- *
- * @phpstan-type CollectionData array{
- *     id: non-empty-string,
- *     displayName: non-empty-string,
- *     singularName: non-empty-string,
- *     slug: non-empty-string,
- *     createdOn: non-empty-string,
- *     lastUpdated: non-empty-string,
- *     fields: array<int, CollectionFieldData>,
- * }
- */
 class Collection extends WebflowObject
 {
     public string $id;
