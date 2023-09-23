@@ -14,11 +14,11 @@ class Webflow
 {
     public readonly Site $site;
 
-    public Collection $collection;
+    public readonly Collection $collection;
 
-    public CollectionField $collectionField;
+    public readonly CollectionField $collectionField;
 
-    public Item $item;
+    public readonly Item $item;
 
     public string $token;
 

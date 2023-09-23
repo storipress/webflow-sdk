@@ -9,7 +9,7 @@ use stdClass;
 abstract class WebflowObject
 {
     final public function __construct(
-        public stdClass $raw,
+        public readonly stdClass $raw,
         bool $map = true,
     ) {
         if (!$map) {

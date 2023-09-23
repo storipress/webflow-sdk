@@ -29,7 +29,7 @@ abstract class Request
     const ENDPOINT = 'https://api.webflow.com';
 
     public function __construct(
-        protected Webflow $app,
+        protected readonly Webflow $app,
     ) {
         //
     }
