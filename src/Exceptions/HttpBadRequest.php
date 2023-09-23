@@ -4,15 +4,7 @@ declare(strict_types=1);
 
 namespace Storipress\Webflow\Exceptions;
 
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-
-class HttpBadRequest extends BadRequestHttpException
+class HttpBadRequest extends HttpException
 {
-    /**
-     * @param  array<string, string>  $headers
-     */
-    public function __construct(string $message = '', \Throwable $previous = null, int $code = 0, array $headers = [])
-    {
-        parent::__construct($message, $previous, $code, $headers);
-    }
+    //
 }

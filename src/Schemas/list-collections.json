@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft-04/schema#",
+  "id": "/schemas/list-collections",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "collections": {
+      "type": "array",
+      "items": {
+        "$ref": "collection-details.json"
+      }
+    }
+  },
+  "required":[
+    "collections"
+  ]
+}

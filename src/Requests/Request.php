@@ -5,12 +5,21 @@ declare(strict_types=1);
 namespace Storipress\Webflow\Requests;
 
 use Illuminate\Http\Client\Response;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Carbon;
+use JsonSchema\Constraints\Constraint;
+use JsonSchema\Validator;
+use stdClass;
 use Storipress\Webflow\Exceptions\HttpAccessDenied;
 use Storipress\Webflow\Exceptions\HttpBadRequest;
+use Storipress\Webflow\Exceptions\HttpConflict;
+use Storipress\Webflow\Exceptions\HttpException;
 use Storipress\Webflow\Exceptions\HttpHitRateLimit;
 use Storipress\Webflow\Exceptions\HttpNotFound;
 use Storipress\Webflow\Exceptions\HttpServerError;
 use Storipress\Webflow\Exceptions\HttpUnauthorized;
+use Storipress\Webflow\Exceptions\HttpUnknownError;
+use Storipress\Webflow\Exceptions\UnexpectedValueException;
 use Storipress\Webflow\Webflow;
 
 abstract class Request
@@ -19,11 +28,6 @@ abstract class Request
 
     const ENDPOINT = 'https://api.webflow.com';
 
-    /**
-     * @var array<array<int, mixed>>
-     */
-    public array $headers;
-
     public function __construct(
         protected Webflow $app,
     ) {
@@ -31,53 +35,145 @@ abstract class Request
     }
 
     /**
+     * @param  'get'|'post'|'patch'|'delete'  $method
+     * @param  non-empty-string  $path
      * @param  array<mixed>  $options
-     * @return array<mixed>|bool|null
+     * @return ($method is 'delete' ? bool : stdClass)
+     *
+     * @throws UnexpectedValueException
+     * @throws HttpException
      */
-    protected function request(string $method, string $uri, array $options = []): array|bool|null
-    {
-        $url = sprintf('%s/%s%s', self::ENDPOINT, self::VERSION, $uri);
-
-        /** @var Response $response */
-        $response = $this->app->http
+    protected function request(
+        string $method,
+        string $path,
+        array $options = [],
+        string $schema = null,
+    ): stdClass|bool {
+        $response = $this
+            ->app
+            ->http
             ->withToken($this->app->token)
-            ->{$method}($url, $options);
+            ->{$method}($this->getUrl($path), $options);
 
-        $this->headers = $response->headers();
+        if (!($response instanceof Response)) {
+            throw new UnexpectedValueException();
+        }
 
         if (!$response->successful()) {
-            $this->error($response->status(), $response->body());
+            $this->error(
+                $response->body(),
+                $response->status(),
+                $response->headers(),
+            );
         }
+
+        $this->setRateLimit($response);
 
         if ($method === 'delete') {
             return $response->successful();
         }
 
-        /** @var array<mixed> $result */
-        $result = $response->json();
+        $data = $response->object();
 
-        return $result;
+        if (!($data instanceof stdClass)) {
+            throw new UnexpectedValueException();
+        }
+
+        if (!is_string($schema)) {
+            return $data;
+        }
+
+        $this->validate($data, $schema);
+
+        return $data;
     }
 
-    protected function error(int $code, string $message): void
+    /**
+     * @param  non-empty-string  $path
+     * @return non-empty-string
+     */
+    protected function getUrl(string $path): string
     {
-        match ($code) {
-            400 => throw new HttpBadRequest($message),
+        return sprintf(
+            '%s/%s/%s',
+            rtrim(self::ENDPOINT, '/'),
+            self::VERSION,
+            ltrim($path, '/'),
+        );
+    }
 
-            401 => throw new HttpUnauthorized($message),
+    protected function setRateLimit(Response $response): void
+    {
+        $this->app->retryAfter = (int) $response->header('Retry-After');
 
-            403 => throw new HttpAccessDenied($message),
+        $this->app->rateLimitRemaining = (int) $response->header('X-RateLimit-Remaining');
+    }
 
-            404 => throw new HttpNotFound($message),
+    /**
+     * @throws UnexpectedValueException
+     */
+    protected function validate(object $data, string $schema): void
+    {
+        $file = realpath(
+            sprintf('%s/../Schemas/%s.json', __DIR__, $schema),
+        );
 
-            429 => throw new HttpHitRateLimit(
-                retryAfter: $this->headers['X-Ratelimit-Reset'][0] - time(),
-                message: $message
-            ),
+        if ($file === false) {
+            return;
+        }
 
-            500 => throw new HttpServerError($message),
+        $path = sprintf('file://%s', $file);
 
-            default => null,
+        $validator = new Validator();
+
+        $validator->validate($data, ['$ref' => $path], Constraint::CHECK_MODE_NORMAL | Constraint::CHECK_MODE_VALIDATE_SCHEMA);
+
+        if ($validator->isValid()) {
+            return;
+        }
+
+        throw new UnexpectedValueException();
+    }
+
+    /**
+     * @param  array<string, array<int, string>>  $headers
+     *
+     * @throws HttpException
+     */
+    protected function error(string $message, int $code, array $headers): void
+    {
+        if ($code === 429) {
+            $timestamp = Arr::get($headers, 'Retry-After.0');
+
+            if (!is_string($timestamp)) {
+                $timestamp = Arr::get($headers, 'X-RateLimit-Reset.0');
+            }
+
+            if (!is_string($timestamp)) {
+                $timestamp = '60';
+            }
+
+            $ttl = Carbon::createFromTimestamp($timestamp);
+
+            $retry = $ttl->isFuture() ? $ttl->diffInSeconds() : $ttl->getTimestamp();
+        }
+
+        throw match ($code) {
+            400 => new HttpBadRequest($message, $code),
+
+            401 => new HttpUnauthorized($message, $code),
+
+            403 => new HttpAccessDenied($message, $code),
+
+            404 => new HttpNotFound($message, $code),
+
+            409 => new HttpConflict($message, $code),
+
+            429 => new HttpHitRateLimit($retry, $message, $code),
+
+            500 => new HttpServerError($message, $code),
+
+            default => new HttpUnknownError($message, $code),
         };
     }
 }

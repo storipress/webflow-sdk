@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft-04/schema#",
+  "id": "/schemas/publish-item",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "publishedItemIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required":[
+    "publishedItemIds",
+    "errors"
+  ]
+}

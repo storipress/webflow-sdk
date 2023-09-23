@@ -1,41 +1,35 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Storipress\Webflow\Objects;
+
+use stdClass;
 
 /**
  * @phpstan-type ItemData array{
- *     id: string,
- *     lastPublished: string,
- *     lastUpdated: string,
- *     createdOn: string,
+ *     id: non-empty-string,
+ *     createdOn: non-empty-string,
+ *     fieldData: stdClass<non-empty-string, mixed>,
  *     isArchived: bool,
  *     isDraft: bool,
- *     fieldData: array<mixed>
+ *     lastPublished: non-empty-string|null,
+ *     lastUpdated: non-empty-string,
  * }
  */
 class Item extends WebflowObject
 {
     public string $id;
 
-    public string $lastPublished;
-
-    public string $lastUpdated;
-
     public string $createdOn;
+
+    public stdClass $fieldData;
 
     public bool $isArchived;
 
     public bool $isDraft;
 
-    /** @var array<mixed> */
-    public array $fieldData;
+    public ?string $lastPublished;
 
-    /**
-     * @param  ItemData  $data
-     * @return $this
-     */
-    public function from(array $data): self
-    {
-        return $this->setRaw($data)->map($data);
-    }
+    public string $lastUpdated;
 }

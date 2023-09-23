@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft-04/schema#",
+  "id": "/schemas/collection-item",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "createdOn": {
+      "type": "string"
+    },
+    "fieldData": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        }
+      }
+    },
+    "isArchived": {
+      "type": "boolean"
+    },
+    "isDraft": {
+      "type": "boolean"
+    },
+    "lastPublished": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "lastUpdated": {
+      "type": "string"
+    }
+  },
+  "required":[
+    "id",
+    "createdOn",
+    "fieldData",
+    "isArchived",
+    "isDraft",
+    "lastPublished",
+    "lastUpdated"
+  ]
+}

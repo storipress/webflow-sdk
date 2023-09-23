@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft-04/schema#",
+  "id": "/schemas/get-custom-domains",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "customDomains": {
+      "type": "array",
+      "items": {
+        "$ref": "custom-domain.json"
+      }
+    }
+  },
+  "required":[
+    "customDomains"
+  ]
+}

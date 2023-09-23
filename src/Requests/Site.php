@@ -1,72 +1,85 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Storipress\Webflow\Requests;
 
+use stdClass;
+use Storipress\Webflow\Exceptions\HttpException;
+use Storipress\Webflow\Exceptions\UnexpectedValueException;
 use Storipress\Webflow\Objects\CustomDomain;
 use Storipress\Webflow\Objects\Site as SiteObject;
-use Webmozart\Assert\Assert;
 
-/**
- * @phpstan-import-type DomainData from CustomDomain
- * @phpstan-import-type SiteData from SiteObject
- */
 class Site extends Request
 {
     /**
-     * https://developers.webflow.com/reference/list-sites
+     * @see https://developers.webflow.com/reference/list-sites
      *
-     * @return SiteObject[]
+     * @return array<int, SiteObject>
+     *
+     * @throws HttpException
+     * @throws UnexpectedValueException
      */
     public function list(): array
     {
-        /** @var array{sites: SiteData[]}|null $data */
-        $data = $this->request('get', '/sites');
+        $data = $this->request(
+            'get',
+            '/sites',
+            schema: 'sites',
+        );
 
-        Assert::isArray($data);
-
-        Assert::keyExists($data, 'sites');
-
-        $sites = [];
-
-        foreach ($data['sites'] as $site) {
-            $sites[] = (new SiteObject())->from($site);
-        }
-
-        return $sites;
+        return array_map(
+            fn ($data) => SiteObject::from($data),
+            $data->sites,
+        );
     }
 
     /**
-     * https://developers.webflow.com/reference/get-site
-     */
-    public function get(): SiteObject
-    {
-        $uri = sprintf('/sites/%s', $this->app->siteId);
-
-        /** @var SiteData|null $data */
-        $data = $this->request('get', $uri);
-
-        Assert::isArray($data);
-
-        return (new SiteObject())->from($data);
-    }
-
-    /**
-     * https://developers.webflow.com/reference/site-publish
+     * @see https://developers.webflow.com/reference/get-site
      *
-     * @param  string[]  $customDomains
+     * @throws HttpException
+     * @throws UnexpectedValueException
      */
-    public function publish(array $customDomains = [], bool $publishToWebflowSubdomain = false): SiteObject
+    public function get(string $siteId = null): SiteObject
     {
-        $uri = sprintf('/sites/%s/publish', $this->app->siteId);
+        $uri = sprintf('/sites/%s', $siteId ?: $this->app->siteId);
 
-        /** @var SiteData|null $data */
-        $data = $this->request('post', $uri, [
-            'customDomains' => $customDomains,
-            'publishToWebflowSubdomain' => $publishToWebflowSubdomain,
-        ]);
+        $data = $this->request('get', $uri, schema: 'get-site');
 
-        Assert::isArray($data);
+        return SiteObject::from($data);
+    }
 
-        return (new SiteObject())->from($data);
+    /**
+     * @see https://developers.webflow.com/reference/site-publish
+     *
+     * @param  array<int, non-empty-string>  $customDomains
+     * @return  stdClass{
+     *     customDomains: array<int, CustomDomain>,
+     *     publishToWebflowSubdomain: bool,
+     * }
+     *
+     * @throws HttpException
+     * @throws UnexpectedValueException
+     */
+    public function publish(string $siteId = null, array $customDomains = [], bool $publishToWebflowSubdomain = false): stdClass
+    {
+        $uri = sprintf('/sites/%s/publish', $siteId ?: $this->app->siteId);
+
+        $data = $this->request(
+            'post',
+            $uri,
+            compact(
+                'customDomains',
+                'publishToWebflowSubdomain',
+            ),
+            'site-publish',
+        );
+
+        $data->customDomains = array_map(
+            fn ($data) => CustomDomain::from($data),
+            $data->customDomains,
+        );
+
+        return $data;
     }
 }

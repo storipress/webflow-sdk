@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft-04/schema#",
+  "id": "/schemas/collection-details",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "createdOn": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "fields": {
+      "type": "array",
+      "items": {
+        "$ref": "collection-field.json"
+      }
+    },
+    "lastUpdated": {
+      "type": "string"
+    },
+    "singularName": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    }
+  },
+  "required":[
+    "id",
+    "createdOn",
+    "displayName",
+    "lastUpdated",
+    "singularName",
+    "slug"
+  ]
+}

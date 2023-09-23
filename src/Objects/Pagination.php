@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Storipress\Webflow\Objects;
 
 /**
  * @phpstan-type PaginationData array{
- *     limit: int,
- *     offset: int,
- *     total: int
+ *     limit: int<1, 100>,
+ *     offset: int<0, max>,
+ *     total: int<0, max>,
  * }
  */
 class Pagination extends WebflowObject
@@ -16,12 +18,4 @@ class Pagination extends WebflowObject
     public int $offset;
 
     public int $total;
-
-    /**
-     * @param  PaginationData  $data
-     */
-    public function from(array $data): self
-    {
-        return $this->setRaw($data)->map($data);
-    }
 }

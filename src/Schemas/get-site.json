@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft-04/schema#",
+  "id": "/schemas/get-site",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "createdOn": {
+      "type": "string"
+    },
+    "customDomains": {
+      "type": "array",
+      "items": {
+        "$ref": "custom-domain.json"
+      }
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "lastPublished": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "lastUpdated": {
+      "type": "string"
+    },
+    "locales": {
+      "type": [
+        "null"
+      ]
+    },
+    "previewUrl": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "shortName": {
+      "type": "string"
+    },
+    "timeZone": {
+      "type": "string"
+    },
+    "workspaceId": {
+      "type": "string"
+    }
+  },
+  "required":[
+    "id",
+    "createdOn",
+    "customDomains",
+    "displayName",
+    "lastPublished",
+    "lastUpdated",
+    "locales",
+    "previewUrl",
+    "shortName",
+    "timeZone",
+    "workspaceId"
+  ]
+}

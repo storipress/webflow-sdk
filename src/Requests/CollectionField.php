@@ -4,76 +4,71 @@ declare(strict_types=1);
 
 namespace Storipress\Webflow\Requests;
 
+use Storipress\Webflow\Exceptions\HttpException;
+use Storipress\Webflow\Exceptions\UnexpectedValueException;
 use Storipress\Webflow\Objects\CollectionField as CollectionFieldObject;
-use Webmozart\Assert\Assert;
 
-/**
- * @phpstan-import-type CollectionFieldData from CollectionFieldObject
- */
 class CollectionField extends Request
 {
     /**
-     * https://developers.webflow.com/reference/create-field
+     * @see https://developers.webflow.com/reference/create-field
+     *
+     * @param  array{
+     *     displayName: non-empty-string,
+     *     type: 'PlainText'|'RichText'|'Image'|'MultiImage'|'Video'|'Link'|'Email'|'Phone'|'Number'|'DateTime'|'Boolean'|'Color'|'ExtFileRef',
+     *     isRequired: bool,
+     *     slug?: non-empty-string,
+     *     helpText?: non-empty-string,
+     * } $params
+     *
+     * @throws HttpException
+     * @throws UnexpectedValueException
      */
-    public function create(string $collectionId, bool $isRequired, string $type, string $displayName, string $slug = null, string $helpText = null): CollectionFieldObject
-    {
+    public function create(
+        string $collectionId,
+        array $params,
+    ): CollectionFieldObject {
         $uri = sprintf('/collections/%s/fields', $collectionId);
 
-        $options = [
-            'isRequired' => $isRequired,
-            'type' => $type,
-            'displayName' => $displayName,
-        ];
+        $data = $this->request('post', $uri, $params, 'collection-field');
 
-        if ($slug) {
-            $options['slug'] = $slug;
-        }
-
-        if ($helpText) {
-            $options['helpText'] = $helpText;
-        }
-
-        /** @var CollectionFieldData|null $data */
-        $data = $this->request('post', $uri, $options);
-
-        Assert::isArray($data);
-
-        return (new CollectionFieldObject())->from($data);
+        return CollectionFieldObject::from($data);
     }
 
     /**
-     * https://developers.webflow.com/reference/update-field
+     * @see https://developers.webflow.com/reference/update-field
+     *
+     * @param  array{
+     *     displayName?: non-empty-string,
+     *     isRequired?: bool,
+     *     helpText?: non-empty-string,
+     * } $params
+     *
+     * @throws HttpException
+     * @throws UnexpectedValueException
      */
-    public function update(string $collectionId, string $fieldId, bool $isRequired, string $displayName, string $helpText = null): CollectionFieldObject
-    {
+    public function update(
+        string $collectionId,
+        string $fieldId,
+        array $params,
+    ): CollectionFieldObject {
         $uri = sprintf('/collections/%s/fields/%s', $collectionId, $fieldId);
 
-        $options = [
-            'isRequired' => $isRequired,
-            'displayName' => $displayName,
-        ];
+        $data = $this->request('patch', $uri, $params, 'collection-field');
 
-        if ($helpText) {
-            $options['helpText'] = $helpText;
-        }
-
-        /** @var CollectionFieldData|null $data */
-        $data = $this->request('patch', $uri, $options);
-
-        Assert::isArray($data);
-
-        return (new CollectionFieldObject())->from($data);
+        return CollectionFieldObject::from($data);
     }
 
     /**
-     * https://developers.webflow.com/reference/delete-field
+     * @see https://developers.webflow.com/reference/delete-field
+     *
+     * @throws HttpException
+     * @throws UnexpectedValueException
      */
     public function delete(string $collectionId, string $fieldId): bool
     {
         $uri = sprintf('/collections/%s/fields/%s', $collectionId, $fieldId);
 
-        $deleted = $this->request('delete', $uri);
-
-        return !is_bool($deleted) ? false : $deleted;
+        return $this->request('delete', $uri);
     }
 }

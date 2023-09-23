@@ -12,7 +12,7 @@ use Storipress\Webflow\Requests\Site;
 
 class Webflow
 {
-    public Site $site;
+    public readonly Site $site;
 
     public Collection $collection;
 
@@ -24,12 +24,25 @@ class Webflow
 
     public string $siteId;
 
+    public int $retryAfter = 60;
+
+    public int $rateLimitRemaining = 60;
+
     public function __construct(
         public Factory $http,
     ) {
-        //
+        $this->site = new Site($this);
+
+        $this->collection = new Collection($this);
+
+        $this->collectionField = new CollectionField($this);
+
+        $this->item = new Item($this);
     }
 
+    /**
+     * @param  non-empty-string  $siteId
+     */
     public function setSiteId(string $siteId): self
     {
         $this->siteId = $siteId;
@@ -37,53 +50,13 @@ class Webflow
         return $this;
     }
 
-    public function setHttpClient(Factory $http): self
-    {
-        $this->http = $http;
-
-        return $this;
-    }
-
+    /**
+     * @param  non-empty-string  $token
+     */
     public function setAccessToken(string $token): self
     {
         $this->token = $token;
 
         return $this;
-    }
-
-    public function site(): Site
-    {
-        if (!isset($this->site)) {
-            $this->site = new Site($this);
-        }
-
-        return $this->site;
-    }
-
-    public function collection(): Collection
-    {
-        if (!isset($this->collection)) {
-            $this->collection = new Collection($this);
-        }
-
-        return $this->collection;
-    }
-
-    public function collectionField(): CollectionField
-    {
-        if (!isset($this->collectionField)) {
-            $this->collectionField = new CollectionField($this);
-        }
-
-        return $this->collectionField;
-    }
-
-    public function item(): Item
-    {
-        if (!isset($this->item)) {
-            $this->item = new Item($this);
-        }
-
-        return $this->item;
     }
 }

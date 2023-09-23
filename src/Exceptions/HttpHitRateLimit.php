@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace Storipress\Webflow\Exceptions;
 
-use Symfony\Component\HttpKernel\Exception\TooManyRequestsHttpException;
+use Throwable;
 
-class HttpHitRateLimit extends TooManyRequestsHttpException
+class HttpHitRateLimit extends HttpException
 {
-    /**
-     * @param  array<string, string>  $headers
-     */
-    public function __construct(int|string $retryAfter = null, string $message = '', \Throwable $previous = null, int $code = 0, array $headers = [])
-    {
-        parent::__construct($retryAfter, $message, $previous, $code, $headers);
+    public function __construct(
+        public ?int $retryAfter = null,
+        string $message = '',
+        int $code = 0,
+        Throwable $previous = null,
+    ) {
+        parent::__construct($message, $code, $previous);
     }
 }

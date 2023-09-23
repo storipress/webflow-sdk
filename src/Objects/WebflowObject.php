@@ -1,41 +1,28 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Storipress\Webflow\Objects;
+
+use stdClass;
 
 abstract class WebflowObject
 {
-    /**
-     * @var array<mixed>
-     */
-    public array $raw;
-
-    /**
-     * @param  array<mixed>  $attributes
-     * @return $this
-     */
-    public function map(array $attributes): self
-    {
-        foreach ($attributes as $key => $value) {
-            if (is_null($value)) {
-                continue;
-            }
-
-            if (property_exists($this, $key)) {
-                $this->{$key} = $value;
-            }
+    final public function __construct(
+        public stdClass $raw,
+        bool $map = true,
+    ) {
+        if (!$map) {
+            return;
         }
 
-        return $this;
+        foreach (get_object_vars($this->raw) as $key => $value) {
+            $this->{$key} = $value;
+        }
     }
 
-    /**
-     * @param  array<mixed>  $raw
-     * @return $this
-     */
-    public function setRaw(array $raw): self
+    public static function from(stdClass $data): static
     {
-        $this->raw = $raw;
-
-        return $this;
+        return new static($data);
     }
 }

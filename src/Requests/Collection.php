@@ -4,66 +4,69 @@ declare(strict_types=1);
 
 namespace Storipress\Webflow\Requests;
 
+use Storipress\Webflow\Exceptions\HttpException;
+use Storipress\Webflow\Exceptions\UnexpectedValueException;
 use Storipress\Webflow\Objects\Collection as CollectionObject;
-use Webmozart\Assert\Assert;
+use Storipress\Webflow\Objects\SimpleCollection as SimpleCollectionObject;
 
-/**
- * @phpstan-import-type CollectionData from CollectionObject
- */
 class Collection extends Request
 {
     /**
-     * https://developers.webflow.com/reference/list-collections
+     * @see https://developers.webflow.com/reference/list-collections
      *
-     * @return CollectionObject[]
+     * @return array<int, SimpleCollectionObject>
+     *
+     * @throws HttpException
+     * @throws UnexpectedValueException
      */
-    public function list(): array
+    public function list(string $siteId = null): array
     {
-        $uri = sprintf('/sites/%s/collections', $this->app->siteId);
+        $uri = sprintf('/sites/%s/collections', $siteId ?: $this->app->siteId);
 
-        /** @var array{collections: CollectionData[]}|null $data */
-        $data = $this->request('get', $uri);
+        $data = $this->request('get', $uri, schema: 'list-collections');
 
-        Assert::isArray($data);
-
-        Assert::keyExists($data, 'collections');
-
-        $collections = [];
-
-        foreach ($data['collections'] as $collection) {
-            $collections[] = (new CollectionObject())->from($collection);
-        }
-
-        return $collections;
+        return array_map(
+            fn ($data) => SimpleCollectionObject::from($data),
+            $data->collections,
+        );
     }
 
     /**
-     * https://developers.webflow.com/reference/create-collection
+     * @see https://developers.webflow.com/reference/create-collection
+     *
+     * @throws HttpException
+     * @throws UnexpectedValueException
      */
-    public function create(): CollectionObject
-    {
-        $uri = sprintf('/sites/%s/collections', $this->app->siteId);
+    public function create(
+        string $siteId = null,
+        string $displayName,
+        string $singularName,
+        string $slug = null,
+    ): CollectionObject {
+        $uri = sprintf('/sites/%s/collections', $siteId ?: $this->app->siteId);
 
-        /** @var CollectionData|null $data */
-        $data = $this->request('post', $uri);
+        $data = $this->request(
+            'post',
+            $uri,
+            array_filter(compact('displayName', 'singularName', 'slug')),
+            'collection-details',
+        );
 
-        Assert::isArray($data);
-
-        return (new CollectionObject())->from($data);
+        return CollectionObject::from($data);
     }
 
     /**
-     * https://developers.webflow.com/reference/collection-details
+     * @see https://developers.webflow.com/reference/collection-details
+     *
+     * @throws HttpException
+     * @throws UnexpectedValueException
      */
     public function get(string $collectionId): CollectionObject
     {
         $uri = sprintf('/collections/%s', $collectionId);
 
-        /** @var CollectionData|null $data */
-        $data = $this->request('get', $uri);
+        $data = $this->request('get', $uri, schema: 'collection-details');
 
-        Assert::isArray($data);
-
-        return (new CollectionObject())->from($data);
+        return CollectionObject::from($data);
     }
 }

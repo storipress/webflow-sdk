@@ -1,144 +1,123 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Storipress\Webflow\Requests;
 
+use stdClass;
+use Storipress\Webflow\Exceptions\HttpException;
+use Storipress\Webflow\Exceptions\UnexpectedValueException;
 use Storipress\Webflow\Objects\Item as ItemObject;
 use Storipress\Webflow\Objects\Pagination;
-use Webmozart\Assert\Assert;
 
-/**
- * @phpstan-import-type ItemData from ItemObject
- * @phpstan-import-type PaginationData from Pagination
- */
 class Item extends Request
 {
     /**
-     * @return array{data: ItemObject[], pagination: Pagination}
+     * @param  int<0, max>  $offset
+     * @param  int<1, 100>  $limit
+     * @return array{
+     *     data: array<int, ItemObject>,
+     *     pagination: Pagination,
+     * }
+     *
+     * @throws HttpException
+     * @throws UnexpectedValueException
      */
-    public function list(string $collectionId, int $offset = null, int $limit = null): array
+    public function list(string $collectionId, int $offset = 0, int $limit = 100): array
     {
-        $options = [];
-
-        if ($offset) {
-            $options['offset'] = $offset;
-        }
-
-        if ($limit) {
-            $options['limit'] = $limit;
-        }
-
         $uri = sprintf('/collections/%s/items', $collectionId);
 
-        /** @var array{items: ItemData[], pagination: PaginationData}|null $data */
-        $data = $this->request('get', $uri, $options);
-
-        Assert::isArray($data);
-
-        Assert::keyExists($data, 'items');
-
-        Assert::keyExists($data, 'pagination');
-
-        $items = [];
-
-        foreach ($data['items'] as $item) {
-            $items[] = (new ItemObject())->from($item);
-        }
-
-        $pagination = (new Pagination())->from($data['pagination']);
+        $data = $this->request(
+            'get',
+            $uri,
+            compact('offset', 'limit'),
+        );
 
         return [
-            'data' => $items,
-            'pagination' => $pagination,
+            'data' => array_map(
+                fn ($data) => ItemObject::from($data),
+                $data->items,
+            ),
+            'pagination' => Pagination::from($data->pagination),
         ];
     }
 
     /**
-     * @param  array<mixed>  $fields
+     * @param array{
+     *     isArchived: bool,
+     *     isDraft: bool,
+     *     fieldData: non-empty-array<non-empty-string, mixed>,
+     * } $params
+     *
+     * @throws HttpException
+     * @throws UnexpectedValueException
      */
-    public function create(string $collectionId, bool $isArchived = false, bool $isDraft = false, array $fields = []): ItemObject
+    public function create(string $collectionId, array $params): ItemObject
     {
-        $options = [
-            'isArchived' => $isArchived,
-            'isDraft' => $isDraft,
-            'fieldData' => $fields,
-        ];
-
         $uri = sprintf('/collections/%s/items', $collectionId);
 
-        /** @var ItemData|null $data */
-        $data = $this->request('post', $uri, $options);
+        $data = $this->request('post', $uri, $params, 'collection-item');
 
-        Assert::isArray($data);
-
-        return (new ItemObject())->from($data);
+        return ItemObject::from($data);
     }
 
+    /**
+     * @throws HttpException
+     * @throws UnexpectedValueException
+     */
     public function get(string $collectionId, string $itemId): ItemObject
     {
         $uri = sprintf('/collections/%s/items/%s', $collectionId, $itemId);
 
-        /** @var ItemData|null $data */
-        $data = $this->request('get', $uri);
+        $data = $this->request('get', $uri, schema: 'collection-item');
 
-        Assert::isArray($data);
-
-        return (new ItemObject())->from($data);
+        return ItemObject::from($data);
     }
 
     /**
-     * @param  array<mixed>  $fields
+     * @param array{
+     *      isArchived?: bool,
+     *      isDraft?: bool,
+     *      fieldData?: non-empty-array<non-empty-string, mixed>,
+     *  } $params
+     *
+     * @throws HttpException
+     * @throws UnexpectedValueException
      */
-    public function update(string $collectionId, string $itemId, bool $isArchived = false, bool $isDraft = false, array $fields = []): ItemObject
+    public function update(string $collectionId, string $itemId, array $params = []): ItemObject
     {
-        $options = [
-            'isArchived' => $isArchived,
-            'isDraft' => $isDraft,
-        ];
-
-        if (!empty($fields)) {
-            $options['fieldData'] = $fields;
-        }
-
         $uri = sprintf('/collections/%s/items/%s', $collectionId, $itemId);
 
-        /** @var ItemData|null $data */
-        $data = $this->request('patch', $uri, $options);
+        $data = $this->request('patch', $uri, $params, 'collection-item');
 
-        Assert::isArray($data);
-
-        return (new ItemObject())->from($data);
+        return ItemObject::from($data);
     }
 
+    /**
+     * @throws HttpException
+     * @throws UnexpectedValueException
+     */
     public function delete(string $collectionId, string $itemId): bool
     {
         $uri = sprintf('/collections/%s/items/%s', $collectionId, $itemId);
 
-        $deleted = $this->request('delete', $uri);
-
-        return (!is_bool($deleted)) ? false : $deleted;
+        return $this->request('delete', $uri);
     }
 
     /**
-     * @param  string[]  $itemIds
-     * @return array{publishedItemIds: string[], errors: string[]}
+     * @param  non-empty-array<int, non-empty-string>  $itemIds
+     * @return stdClass{
+     *     publishedItemIds: array<int, non-empty-string>,
+     *     errors: array<int, non-empty-string>,
+     * }
+     *
+     * @throws HttpException
+     * @throws UnexpectedValueException
      */
-    public function publish(string $collectionId, array $itemIds = []): array
+    public function publish(string $collectionId, array $itemIds): stdClass
     {
         $uri = sprintf('/collections/%s/items/publish', $collectionId);
 
-        $options = [
-            'itemIds' => $itemIds,
-        ];
-
-        /** @var array{publishedItemIds: string[], errors: string[]} $data */
-        $data = $this->request('post', $uri, $options);
-
-        Assert::isArray($data);
-
-        Assert::keyExists($data, 'publishedItemIds');
-
-        Assert::keyExists($data, 'errors');
-
-        return $data;
+        return $this->request('post', $uri, compact('itemIds'), 'publish-item');
     }
 }

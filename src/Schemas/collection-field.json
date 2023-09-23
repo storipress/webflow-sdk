@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft-04/schema#",
+  "id": "/schemas/collection-field",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "helpText": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "isEditable": {
+      "type": "boolean"
+    },
+    "isRequired": {
+      "type": "boolean"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "validations": {
+      "type": "object"
+    }
+  },
+  "required":[
+    "id",
+    "displayName",
+    "helpText",
+    "isEditable",
+    "isRequired",
+    "slug",
+    "type"
+  ]
+}

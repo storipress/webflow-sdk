@@ -1,75 +1,81 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Storipress\Webflow\Objects;
+
+use stdClass;
 
 /**
  * @phpstan-import-type DomainData from CustomDomain
  *
  * @phpstan-type SiteData array{
- *     id: string,
- *     workspaceId: string,
- *     createdOn: string,
- *     displayName: string,
- *     shortName: string,
- *     lastPublished: string,
- *     previewUrl: string,
- *     timeZone: string,
- *     customDomains: array<DomainData>,
- *     publishToWebflowSubdomain?: bool
+ *     id: non-empty-string,
+ *     createdOn: non-empty-string,
+ *     customDomains: array<int, DomainData>,
+ *     displayName: non-empty-string,
+ *     lastPublished: non-empty-string|null,
+ *     lastUpdated: non-empty-string,
+ *     locales: null,
+ *     previewUrl: non-empty-string|null,
+ *     shortName: non-empty-string,
+ *     timeZone: non-empty-string,
+ *     workspaceId: non-empty-string,
  * }
  */
 class Site extends WebflowObject
 {
     public string $id;
 
-    public string $workspaceId;
-
     public string $createdOn;
 
-    public string $displayName;
-
-    public string $shortName;
-
-    public ?string $lastPublished;
-
-    public string $previewUrl;
-
-    public string $timezone;
-
-    public string $defaultDomain;
-
     /**
-     * @var array<CustomDomain>
+     * @var array<int, CustomDomain>
      */
     public array $customDomains;
 
-    public bool $publishToWebflowSubdomain;
+    /**
+     * @todo need-explain
+     */
+    public string $defaultDomain;
+
+    public string $displayName;
+
+    public ?string $lastPublished;
+
+    public string $lastUpdated;
 
     /**
-     * @param  SiteData  $data
+     * @todo need-explain
      */
-    public function from(array $data): self
+    public ?string $locales;
+
+    public ?string $previewUrl;
+
+    public string $shortName;
+
+    public string $timeZone;
+
+    public string $workspaceId;
+
+    public static function from(stdClass $data): static
     {
-        $this->setRaw($data);
-
-        $domains = [];
-
-        foreach ($data['customDomains'] as $domain) {
-            $domains[] = (new CustomDomain())->from($domain);
+        if (property_exists($data, 'customDomains')) {
+            $data->customDomains = array_map(
+                fn ($data) => CustomDomain::from($data),
+                $data->customDomains,
+            );
         }
 
-        $data['customDomains'] = $domains;
+        $object = parent::from($data);
 
-        $this->map($data);
-
-        if (isset($this->shortName)) {
-            $this->defaultDomain = sprintf('%s.webflow.io', $this->shortName);
+        if (isset($object->shortName)) {
+            $object->defaultDomain = sprintf(
+                '%s.webflow.io',
+                $object->shortName,
+            );
         }
 
-        if (isset($data['publishToWebflowSubdomain'])) {
-            $this->publishToWebflowSubdomain = $data['publishToWebflowSubdomain'];
-        }
-
-        return $this;
+        return $object;
     }
 }

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Storipress\Webflow\Exceptions;
 
-class HttpNotFound extends HttpException
+use Exception as BaseException;
+
+abstract class Exception extends BaseException
 {
     //
 }
