@@ -40,7 +40,7 @@
   "extra": {
     "laravel": {
       "aliases": {
-        "Webflow": "Storipress\\Webflow\\Facades"
+        "Webflow": "Storipress\\Webflow\\Facades\\Webflow"
       },
       "providers": [
         "Storipress\\Webflow\\WebflowServiceProvider"
