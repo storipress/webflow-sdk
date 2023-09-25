@@ -29,7 +29,10 @@
       "type": "string"
     },
     "validations": {
-      "type": "object"
+      "type": [
+        "object",
+        "null"
+      ]
     }
   },
   "required":[

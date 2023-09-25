@@ -37,5 +37,5 @@ class CollectionField extends WebflowObject
      */
     public string $type;
 
-    public stdClass $validations;
+    public ?stdClass $validations;
 }
