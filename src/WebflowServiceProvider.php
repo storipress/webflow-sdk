@@ -13,7 +13,7 @@ class WebflowServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(
+        $this->app->singleton(
             'webflow',
             fn () => $this->app->make(Webflow::class),
         );
