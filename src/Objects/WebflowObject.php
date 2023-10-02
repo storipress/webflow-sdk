@@ -9,13 +9,8 @@ use stdClass;
 abstract class WebflowObject
 {
     final public function __construct(
-        public readonly stdClass $raw,
-        bool $map = true,
+        protected readonly stdClass $raw,
     ) {
-        if (!$map) {
-            return;
-        }
-
         foreach (get_object_vars($this->raw) as $key => $value) {
             $this->{$key} = $value;
         }
@@ -24,5 +19,10 @@ abstract class WebflowObject
     public static function from(stdClass $data): static
     {
         return new static($data);
+    }
+
+    public function getRaw(): stdClass
+    {
+        return $this->raw;
     }
 }
