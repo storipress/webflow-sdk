@@ -33,7 +33,7 @@ class CollectionField extends WebflowObject
     public string $slug;
 
     /**
-     * @var non-empty-string
+     * @var 'PlainText'|'RichText'|'Image'|'MultiImage'|'VideoLink'|'Link'|'Email'|'Phone'|'Number'|'DateTime'|'Switch'|'Color'|'Option'|'File'|'Reference'|'MultiReference'|'User'
      */
     public string $type;
 
