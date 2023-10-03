@@ -8,6 +8,11 @@ use stdClass;
 
 abstract class WebflowObject
 {
+    /**
+     * @var array<string, mixed>
+     */
+    private array $_map = [];
+
     final public function __construct(
         protected readonly stdClass $raw,
     ) {
@@ -24,5 +29,15 @@ abstract class WebflowObject
     public function getRaw(): stdClass
     {
         return $this->raw;
+    }
+
+    public function __set(string $key, mixed $value): void
+    {
+        $this->_map[$key] = $value;
+    }
+
+    public function __get(string $key): mixed
+    {
+        return $this->_map[$key];
     }
 }
