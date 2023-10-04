@@ -15,7 +15,7 @@ class CollectionField extends Request
      *
      * @param  array{
      *     displayName: non-empty-string,
-     *     type: 'PlainText'|'RichText'|'Image'|'MultiImage'|'Video'|'Link'|'Email'|'Phone'|'Number'|'DateTime'|'Boolean'|'Color'|'ExtFileRef',
+     *     type: 'PlainText'|'RichText'|'Image'|'MultiImage'|'Video'|'Link'|'Email'|'Phone'|'Number'|'DateTime'|'Switch'|'Color'|'ExtFileRef',
      *     isRequired: bool,
      *     slug?: non-empty-string,
      *     helpText?: non-empty-string,
