@@ -8,6 +8,9 @@ use Storipress\Webflow\Exceptions\HttpException;
 use Storipress\Webflow\Exceptions\UnexpectedValueException;
 use Storipress\Webflow\Objects\CollectionField as CollectionFieldObject;
 
+/**
+ * @phpstan-type FieldType 'PlainText'|'RichText'|'Image'|'MultiImage'|'Video'|'Link'|'Email'|'Phone'|'Number'|'DateTime'|'Switch'|'Color'|'ExtFileRef'
+ */
 class CollectionField extends Request
 {
     /**
@@ -15,7 +18,7 @@ class CollectionField extends Request
      *
      * @param  array{
      *     displayName: non-empty-string,
-     *     type: 'PlainText'|'RichText'|'Image'|'MultiImage'|'Video'|'Link'|'Email'|'Phone'|'Number'|'DateTime'|'Switch'|'Color'|'ExtFileRef',
+     *     type: FieldType,
      *     isRequired: bool,
      *     slug?: non-empty-string,
      *     helpText?: non-empty-string,
