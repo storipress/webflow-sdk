@@ -38,6 +38,6 @@ abstract class WebflowObject
 
     public function __get(string $key): mixed
     {
-        return $this->_map[$key];
+        return $this->_map[$key] ?? null;
     }
 }
