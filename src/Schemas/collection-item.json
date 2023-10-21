@@ -7,6 +7,12 @@
     "id": {
       "type": "string"
     },
+    "cmsLocaleId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
     "createdOn": {
       "type": "string"
     },
