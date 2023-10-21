@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft-04/schema#",
   "id": "/schemas/sites",
   "type": "object",
-  "additionalProperties": false,
+  "additionalProperties": true,
   "properties": {
     "sites": {
       "type": "array",
