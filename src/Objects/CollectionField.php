@@ -6,6 +6,9 @@ namespace Storipress\Webflow\Objects;
 
 use stdClass;
 
+/**
+ * @phpstan-type CollectionFieldType 'PlainText'|'RichText'|'Image'|'MultiImage'|'VideoLink'|'Link'|'Email'|'Phone'|'Number'|'DateTime'|'Switch'|'Color'|'Option'|'File'|'Reference'|'MultiReference'|'User'|'SkuSettings'|'SkuValues'|'Price'|'MembershipPlan'|'TextOption'|'MultiExternalFile'
+ */
 class CollectionField extends WebflowObject
 {
     /**
@@ -33,7 +36,7 @@ class CollectionField extends WebflowObject
     public string $slug;
 
     /**
-     * @var 'PlainText'|'RichText'|'Image'|'MultiImage'|'VideoLink'|'Link'|'Email'|'Phone'|'Number'|'DateTime'|'Switch'|'Color'|'Option'|'File'|'Reference'|'MultiReference'|'User'
+     * @var CollectionFieldType
      */
     public string $type;
 
