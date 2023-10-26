@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft-04/schema#",
+  "id": "/schemas/collection-details",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "siteId": {
+      "type": "string"
+    },
+    "workspaceId": {
+      "type": "string"
+    },
+    "triggerType": {
+      "type": "string"
+    },
+    "filter": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "url": {
+      "type": "string"
+    },
+    "createdOn": {
+      "type": "string"
+    },
+    "lastTriggered": {
+      "type": "string"
+    }
+  },
+  "required":[
+    "id",
+    "triggerType",
+    "filter",
+    "url",
+    "createdOn",
+    "lastTriggered"
+  ]
+}

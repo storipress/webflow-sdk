@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft-04/schema#",
+  "id": "/schemas/list-collections",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "webhooks": {
+      "type": "array",
+      "items": {
+        "$ref": "webhook-details.json"
+      }
+    }
+  },
+  "required":[
+    "webhooks"
+  ]
+}
