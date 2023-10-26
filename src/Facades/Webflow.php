@@ -9,12 +9,14 @@ use Storipress\Webflow\Requests\Collection;
 use Storipress\Webflow\Requests\CollectionField;
 use Storipress\Webflow\Requests\Item;
 use Storipress\Webflow\Requests\Site;
+use Storipress\Webflow\Requests\Webhook;
 
 /**
  * @method static Site site()
  * @method static Collection collection()
  * @method static CollectionField collectionField()
  * @method static Item item()
+ * @method static Webhook webhook()
  * @method static string token()
  * @method static string siteId()
  * @method static int retryAfter()
