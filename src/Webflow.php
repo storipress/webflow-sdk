@@ -9,6 +9,7 @@ use Storipress\Webflow\Requests\Collection;
 use Storipress\Webflow\Requests\CollectionField;
 use Storipress\Webflow\Requests\Item;
 use Storipress\Webflow\Requests\Site;
+use Storipress\Webflow\Requests\Webhook;
 
 class Webflow
 {
@@ -19,6 +20,8 @@ class Webflow
     protected readonly CollectionField $collectionField;
 
     protected readonly Item $item;
+
+    protected readonly Webhook $webhook;
 
     protected string $token;
 
@@ -38,6 +41,8 @@ class Webflow
         $this->collectionField = new CollectionField($this);
 
         $this->item = new Item($this);
+
+        $this->webhook = new Webhook($this);
     }
 
     public function instance(): static
@@ -117,5 +122,10 @@ class Webflow
     public function item(): Item
     {
         return $this->item;
+    }
+
+    public function webhook(): Webhook
+    {
+        return $this->webhook;
     }
 }

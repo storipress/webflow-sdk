@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft-04/schema#",
+  "id": "/schemas/webhook-details",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "siteId": {
+      "type": "string"
+    },
+    "workspaceId": {
+      "type": "string"
+    },
+    "triggerType": {
+      "type": "string"
+    },
+    "filter": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "url": {
+      "type": "string"
+    },
+    "createdOn": {
+      "type": "string"
+    },
+    "lastTriggered": {
+      "type": "string"
+    }
+  },
+  "required":[
+    "id",
+    "siteId",
+    "workspaceId",
+    "triggerType",
+    "filter",
+    "url",
+    "createdOn",
+    "lastTriggered"
+  ]
+}
