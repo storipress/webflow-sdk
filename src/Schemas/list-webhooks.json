@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft-04/schema#",
-  "id": "/schemas/list-collections",
+  "id": "/schemas/list-webhooks",
   "type": "object",
   "additionalProperties": false,
   "properties": {

@@ -21,9 +21,9 @@ class Webhook extends Request
      * @throws HttpException
      * @throws UnexpectedValueException
      */
-    public function list(string $siteId = null): array
+    public function list(string $siteId): array
     {
-        $uri = sprintf('/sites/%s/webhooks', $siteId ?: $this->app->siteId());
+        $uri = sprintf('/sites/%s/webhooks', $siteId);
 
         $data = $this->request('get', $uri, schema: 'list-webhooks');
 
@@ -40,7 +40,7 @@ class Webhook extends Request
     {
         $uri = sprintf('/webhooks/%s', $webhookId);
 
-        $data = $this->request('get', $uri, schema: "webhook-details");
+        $data = $this->request('get', $uri, schema: 'webhook-details');
 
         return WebhookObject::from($data);
     }
@@ -51,15 +51,15 @@ class Webhook extends Request
      * @param  TriggerType  $triggerType
      * @param  array<non-empty-string, non-empty-string>  $filter
      */
-    public function create(string $triggerType, string $url, array $filter = [], string $siteId = null): WebhookObject
+    public function create(string $siteId, string $triggerType, string $url, array $filter = []): WebhookObject
     {
-        $uri = sprintf('/sites/%s/webhooks', $siteId ?: $this->app->siteId());
+        $uri = sprintf('/sites/%s/webhooks', $siteId);
 
         $data = $this->request(
             'post',
             $uri,
             array_filter(compact('triggerType', 'url', 'filter')),
-            schema: "webhook-details"
+            schema: 'webhook-details',
         );
 
         return WebhookObject::from($data);

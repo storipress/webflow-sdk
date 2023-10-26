@@ -5,9 +5,8 @@ use Storipress\Webflow\Objects\Webhook as WebhookObject;
 it('can list webhooks', function () {
     $webhooks = $this
         ->webflow
-        ->setSiteId('site_id')
         ->webhook()
-        ->list();
+        ->list('site_id');
 
     expect($webhooks)->toBeArray();
 
@@ -38,9 +37,8 @@ it('can get webhook', function () {
 it('can create webhook', function () {
     $webhook = $this
         ->webflow
-        ->setSiteId('582266e0cd48de0f0e3c6d8b/create')
         ->webhook()
-        ->create('form_submission', 'https://webhook.site/7f7f7f7f-7f7f-7f7f-7f7f-7f7f7f7f7f7f');
+        ->create('582266e0cd48de0f0e3c6d8b/create', 'form_submission', 'https://webhook.site/7f7f7f7f-7f7f-7f7f-7f7f-7f7f7f7f7f7f');
 
     expect($webhook)->toBeInstanceOf(WebhookObject::class);
 
