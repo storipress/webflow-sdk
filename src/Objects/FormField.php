@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Storipress\Webflow\Objects;
 
+/**
+ * @phpstan-type FormFieldType 'Plain'|'Email'|'Password'|'Phone'|'Number'
+ */
 class FormField extends WebflowObject
 {
     /**
@@ -12,7 +15,7 @@ class FormField extends WebflowObject
     public string $displayName;
 
     /**
-     * @var non-empty-string
+     * @var FormFieldType
      */
     public string $type;
 
