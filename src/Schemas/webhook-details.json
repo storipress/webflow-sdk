@@ -29,7 +29,10 @@
       "type": "string"
     },
     "lastTriggered": {
-      "type": "string"
+      "type": [
+        "string",
+        "null"
+      ]
     }
   },
   "required":[
