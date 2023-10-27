@@ -44,4 +44,14 @@ class Form extends WebflowObject
     public array $fields;
 
     public stdClass $responseSettings;
+
+    public static function from(stdClass $data): static
+    {
+        $data->fields = array_map(
+            fn ($data) => FormField::from($data),
+            (array) $data->fields,
+        );
+
+        return parent::from($data);
+    }
 }

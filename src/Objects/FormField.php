@@ -16,7 +16,7 @@ class FormField extends WebflowObject
      */
     public string $type;
 
-    public string $placeHolder;
+    public string $placeholder;
 
     public bool $userVisible;
 }
