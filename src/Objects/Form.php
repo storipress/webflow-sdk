@@ -16,6 +16,11 @@ class Form extends WebflowObject
     /**
      * @var non-empty-string
      */
+    public string $displayName;
+
+    /**
+     * @var non-empty-string
+     */
     public string $siteId;
 
     /**
@@ -44,6 +49,16 @@ class Form extends WebflowObject
     public array $fields;
 
     public stdClass $responseSettings;
+
+    /**
+     * @var non-empty-string
+     */
+    public string $createdOn;
+
+    /**
+     * @var non-empty-string
+     */
+    public string $lastUpdated;
 
     public static function from(stdClass $data): static
     {
