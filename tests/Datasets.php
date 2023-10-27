@@ -285,4 +285,64 @@ return [
         'filter' => null,
         'url' => 'https://webhook.site/7f7f7f7f-7f7f-7f7f-7f7f-7f7f7f7f7f7f',
     ],
+    'api.webflow.com/v2/sites/580e63e98c9a982ac9b8b741/forms?offset=0&limit=100' => [
+        'forms' => [
+            [
+                'id' => '589a331aa51e760df7ccb89e',
+                'displayName' => 'Email Form',
+                'siteId' => '580e63e98c9a982ac9b8b741',
+                'siteDomainId' => '6419db964a9c436a4baf6248',
+                'pageId' => '6419db964a9c43f6a3af6348',
+                'pageName' => 'Home',
+                'workspaceId' => '580e63fc8c9a982ac9b8b744',
+                'responseSettings' => [
+                    'sendEmailConfirmation' => true,
+                    'redirectUrl' => 'https://example.com',
+                    'redirectMethod' => 'GET',
+                    'redirectAction' => '',
+                ],
+                'fields' => [
+                    [
+                        '589a331aa51e760df7ccb89d' => [
+                            'displayName' => 'Email',
+                            'type' => 'string',
+                            'placeholder' => 'Enter your email',
+                            'userVisible' => true,
+                        ],
+                    ],
+                ],
+                'createdOn' => '2016-10-24T19:41:29.156Z',
+                'lastUpdated' => '2016-10-24T19:43:17.271Z',
+            ],
+            [
+                'id' => '580ff8d7ba3e45ba9fe588e9',
+                'displayName' => 'Name Form',
+                'siteId' => '580e63e98c9a982ac9b8b741',
+                'workspaceId' => '580e63fc8c9a982ac9b8b744',
+                'responseSettings' => [
+                    'sendEmailConfirmation' => false,
+                    'redirectUrl' => 'https://example.com',
+                    'redirectMethod' => 'GET',
+                    'redirectAction' => '',
+                ],
+                'fields' => [
+                    [
+                        '589a331aa51e760df7ccb89d' => [
+                            'displayName' => 'Name',
+                            'type' => 'string',
+                            'placeholder' => 'Enter your name',
+                            'userVisible' => true,
+                        ],
+                    ],
+                ],
+                'createdOn' => '2016-10-24T19:41:29.156Z',
+                'lastUpdated' => '2016-10-24T19:43:17.271Z',
+            ],
+        ],
+        'pagination' => [
+            'limit' => 25,
+            'offset' => 0,
+            'total' => 2,
+        ],
+    ],
 ];

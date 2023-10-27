@@ -7,6 +7,7 @@ namespace Storipress\Webflow\Facades;
 use Illuminate\Support\Facades\Facade;
 use Storipress\Webflow\Requests\Collection;
 use Storipress\Webflow\Requests\CollectionField;
+use Storipress\Webflow\Requests\Form;
 use Storipress\Webflow\Requests\Item;
 use Storipress\Webflow\Requests\Site;
 use Storipress\Webflow\Requests\Webhook;
@@ -17,6 +18,7 @@ use Storipress\Webflow\Requests\Webhook;
  * @method static CollectionField collectionField()
  * @method static Item item()
  * @method static Webhook webhook()
+ * @method static Form form()
  * @method static string token()
  * @method static string siteId()
  * @method static int retryAfter()

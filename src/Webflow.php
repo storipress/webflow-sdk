@@ -7,6 +7,7 @@ namespace Storipress\Webflow;
 use Illuminate\Http\Client\Factory;
 use Storipress\Webflow\Requests\Collection;
 use Storipress\Webflow\Requests\CollectionField;
+use Storipress\Webflow\Requests\Form;
 use Storipress\Webflow\Requests\Item;
 use Storipress\Webflow\Requests\Site;
 use Storipress\Webflow\Requests\Webhook;
@@ -22,6 +23,8 @@ class Webflow
     protected readonly Item $item;
 
     protected readonly Webhook $webhook;
+
+    protected readonly Form $form;
 
     protected string $token;
 
@@ -43,6 +46,8 @@ class Webflow
         $this->item = new Item($this);
 
         $this->webhook = new Webhook($this);
+
+        $this->form = new Form($this);
     }
 
     public function instance(): static
@@ -127,5 +132,10 @@ class Webflow
     public function webhook(): Webhook
     {
         return $this->webhook;
+    }
+
+    public function form(): Form
+    {
+        return $this->form;
     }
 }
