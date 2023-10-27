@@ -39,9 +39,9 @@ class Webhook extends WebflowObject
     public string $createdOn;
 
     /**
-     * @var non-empty-string
+     * @var non-empty-string|null
      */
-    public string $lastTriggered;
+    public ?string $lastTriggered;
 
     /**
      * @var non-empty-string
