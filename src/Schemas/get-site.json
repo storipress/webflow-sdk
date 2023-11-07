@@ -30,6 +30,7 @@
     },
     "locales": {
       "type": [
+        "object",
         "null"
       ]
     },

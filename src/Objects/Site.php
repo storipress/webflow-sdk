@@ -46,11 +46,20 @@ class Site extends WebflowObject
     public string $lastUpdated;
 
     /**
-     * @todo need-explain
-     *
-     * @var non-empty-string|null
+     * "locales": {
+     *     "primary": {
+     *         "id": "6541df32dc229bb7babac592",
+     *         "cmsId": "6541df32dc229bb7babac593",
+     *         "enabled": false,
+     *         "displayName": "English",
+     *         "redirect": true,
+     *         "subdirectory": "en",
+     *         "tag": "en"
+     *     },
+     *     "secondary": []
+     * }
      */
-    public ?string $locales;
+    public ?stdClass $locales;
 
     /**
      * @var non-empty-string|null
