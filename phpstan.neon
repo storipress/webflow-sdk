@@ -9,4 +9,14 @@ parameters:
 
     paths:
         - src
-#        - tests
+        - tests
+
+    ignoreErrors:
+        -
+          message: '#Undefined variable\: \$this#'
+          paths:
+            - tests/*
+        -
+          message: '#Call to an undefined method Pest\\PendingCalls\\TestCall\|Pest\\Support\\HigherOrderTapProxy\:\:.+?\.#'
+          paths:
+            - tests/*
