@@ -10,13 +10,13 @@
     "justinrainbow/json-schema": "^5.2"
   },
   "require-dev": {
-    "ergebnis/composer-normalize": "^2.39",
+    "ergebnis/composer-normalize": "^2.41",
     "guzzlehttp/guzzle": "^7.8",
+    "larastan/larastan": "^2.8",
     "laravel/pint": "^1.13",
-    "nunomaduro/larastan": "^2.6",
-    "orchestra/testbench": "^8.15",
+    "orchestra/testbench": "^8.20",
     "pestphp/pest-plugin-laravel": "^2.2",
-    "pestphp/pest-plugin-type-coverage": "^2.4"
+    "pestphp/pest-plugin-type-coverage": "^2.8"
   },
   "minimum-stability": "stable",
   "prefer-stable": true,
