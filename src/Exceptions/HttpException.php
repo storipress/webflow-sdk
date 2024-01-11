@@ -15,13 +15,13 @@ abstract class HttpException extends Exception
     public function __construct(
         string $message = '',
         int $code = 0,
-        Throwable $previous = null,
+        ?Throwable $previous = null,
     ) {
         parent::__construct($message, $code, $previous);
 
         $error = json_decode($message, false);
 
-        if (!($error instanceof stdClass)) {
+        if (! ($error instanceof stdClass)) {
             $error = new stdClass();
 
             $error->message = $message;

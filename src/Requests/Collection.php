@@ -19,7 +19,7 @@ class Collection extends Request
      * @throws HttpException
      * @throws UnexpectedValueException
      */
-    public function list(string $siteId = null): array
+    public function list(?string $siteId = null): array
     {
         $uri = sprintf('/sites/%s/collections', $siteId ?: $this->app->siteId());
 
@@ -38,10 +38,10 @@ class Collection extends Request
      * @throws UnexpectedValueException
      */
     public function create(
-        string $siteId = null,
+        ?string $siteId,
         string $displayName,
         string $singularName,
-        string $slug = null,
+        ?string $slug = null,
     ): CollectionObject {
         $uri = sprintf('/sites/%s/collections', $siteId ?: $this->app->siteId());
 

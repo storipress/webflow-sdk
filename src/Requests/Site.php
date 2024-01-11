@@ -40,7 +40,7 @@ class Site extends Request
      * @throws HttpException
      * @throws UnexpectedValueException
      */
-    public function get(string $siteId = null): SiteObject
+    public function get(?string $siteId = null): SiteObject
     {
         $uri = sprintf('/sites/%s', $siteId ?: $this->app->siteId());
 
@@ -61,7 +61,7 @@ class Site extends Request
      * @throws HttpException
      * @throws UnexpectedValueException
      */
-    public function publish(string $siteId = null, array $customDomains = [], bool $publishToWebflowSubdomain = false): stdClass
+    public function publish(?string $siteId = null, array $customDomains = [], bool $publishToWebflowSubdomain = false): stdClass
     {
         $uri = sprintf('/sites/%s/publish', $siteId ?: $this->app->siteId());
 

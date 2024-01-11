@@ -12,7 +12,7 @@ class HttpHitRateLimit extends HttpException
         public readonly int $retryAfter,
         string $message = '',
         int $code = 0,
-        Throwable $previous = null,
+        ?Throwable $previous = null,
     ) {
         parent::__construct($message, $code, $previous);
     }
