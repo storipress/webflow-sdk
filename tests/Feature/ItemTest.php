@@ -17,7 +17,7 @@ it('can list items', function () {
 
     expect($data)->toHaveCount(5);
 
-    expect(Arr::first($data))->toBeInstanceOf(Item::class);
+    expect(Arr::first($data))->toBeInstanceOf(Item::class); // @phpstan-ignore-line
 
     expect($items['pagination'])->toBeInstanceOf(Pagination::class);
 });

@@ -993,16 +993,13 @@ return [
                 'metadata' => [
                     'width' => 1280,
                     'height' => 720,
-                    'html' =>
-                        '<iframe class="embedly-embed" src="//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fplayer.vimeo.com%2Fvideo%2F45698221%3Fapp_id%3D122963&dntp=1&url=https%3A%2F%2Fvimeo.com%2F45698221&image=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F317907578_1280.jpg&key=96f1f04c5f4143bcb0f2e68c87d65feb&type=text%2Fhtml&schema=vimeo" width="1280" height="720" scrolling="no" frameborder="0" allow="autoplay; fullscreen" allowfullscreen="true"></iframe>',
+                    'html' => '<iframe class="embedly-embed" src="//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fplayer.vimeo.com%2Fvideo%2F45698221%3Fapp_id%3D122963&dntp=1&url=https%3A%2F%2Fvimeo.com%2F45698221&image=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F317907578_1280.jpg&key=96f1f04c5f4143bcb0f2e68c87d65feb&type=text%2Fhtml&schema=vimeo" width="1280" height="720" scrolling="no" frameborder="0" allow="autoplay; fullscreen" allowfullscreen="true"></iframe>',
                     'aspectRatio' => 0,
                     'title' => 'What is motion graphics?',
                     'provider_name' => 'Vimeo',
                     'type' => 'video',
-                    'thumbnail_url' =>
-                        'https://i.vimeocdn.com/video/317907578_1280.jpg',
-                    'description' =>
-                        'I made this video for my thesis but then my plans changed because of many reasons and I didn\'t use it. I was supported by Carlo De Agostini during the design phase.',
+                    'thumbnail_url' => 'https://i.vimeocdn.com/video/317907578_1280.jpg',
+                    'description' => 'I made this video for my thesis but then my plans changed because of many reasons and I didn\'t use it. I was supported by Carlo De Agostini during the design phase.',
                     'author_name' => 'Elisa Tron',
                 ],
             ],
@@ -1018,43 +1015,35 @@ return [
             'number-any-format' => 0.3,
             'option' => '05292b8c345c2e74d6184771e1ac7e2e',
             'name' => '10 Great Examples of Responsive Websites',
-            'post-body' =>
-                '<h2>Amet quia laborum impedit incidunt sit asperiores quae.</h2><p>Sit minima quas eaque doloribus architecto provident sit optio. Quas est molestiae animi omnis fugit. Adipisci quis et sapiente velit beatae. Officia quia eum maxime rerum itaque quibusdam labore distinctio ut. Vitae exercitationem repellendus eaque vel corporis enim.</p><h3>Id necessitatibus aut nihil aut sed qui consequatur dolore.</h3><blockquote>Quae quidem corporis magni beatae ut hic eum quia aut. Exercitationem et aperiam rerum nostrum ducimus iste nulla sint. Aut optio consequatur perspiciatis error incidunt sit atque voluptas. Voluptas tempore deleniti dolore exercitationem quia et. Repudiandae sed fuga laboriosam. Minus et perspiciatis harum fugiat ab aut accusantium molestiae.</blockquote><p>Ab ut fugit ratione dolorem facilis. Velit fuga recusandae consequatur explicabo optio. Autem repellendus eos veniam. Delectus eveniet repellendus voluptatibus dolorum eius officiis consectetur pariatur. Voluptas id quo ut voluptatum praesentium.</p><p>Adipisci et eligendi repellendus veniam voluptas ex quis ea. Aut corporis enim tenetur. Laborum error deleniti accusamus distinctio deserunt quam. Quia ratione vel ex culpa fugit aut.</p>',
-            'plain-text-single-line' =>
-                'In quas assumenda veniam animi ipsam. Non et rerum ipsa est corrupti sint aut et. Quis omnis dolorum maiores aut eveniet minima ut. Unde cum architecto in. Explicabo et at laboriosam non in tempore esse voluptas. Architecto fugit repellat quidem minima exercitationem consequatur similique. Voluptatem sunt doloribus soluta ut nihil. Nesciunt in quod ut esse numquam itaque. Perspiciatis accusantium non ut qui quis placeat. Et ',
-            'plain-text-multiple-line' =>
-                'Possimus aperiam quis illum quibusdam enim inventore. Dicta ut velit veniam in est quia quisquam aut ex. Similique quis ullam dolor rerum. Repellat dignissimos enim sunt dicta dicta. Placeat omnis repellat ipsam. Qui ad quo dolores atque vel animi incidunt est eius. Sed quia omnis et aspernatur odio incidunt voluptas et. Sunt aliquid est tempora amet aut. Totam tempora consequuntur et distinctio ad. Porro consequatur esse veritatis expedita. Possimus tenetur delectus et quia rerum eum et sapiente quia. Consequatur quibusdam maiores quidem totam perspiciatis tempora dolorem. A earum incidunt dolorem quis molestiae ad vel. Id quos consequatur perferendis aspernatur ullam in ea. Eligendi aut magni architecto nihil ex doloribus. Eaque illum omnis est sit vel ut. Eos ut voluptas alias quod sit aut incidunt qui. Aut quae autem. Ipsum nobis optio laboriosam et dolorem dolores odit maiores. Qui voluptatem nemo aut rerum id tempora modi. Qui reiciendis laborum et ut blanditiis eveniet beatae. Sit possimus nam dolorem quo. Corporis corrupti libero alias sapiente autem minima quia. Sit nemo repellendus sint pariatur ipsam omnis iure. Sunt amet et temporibus sunt eum. Quas dolorem ullam mollitia harum eaque dolorem magni quis sint. Aperiam aut atque tenetur neque corporis sit sapiente. Sapiente ut excepturi distinctio omnis iusto adipisci non qui exercitationem. Incidunt molestias consectetur incidunt qui. Saepe nihil laboriosam temporibus. Doloribus velit reiciendis eum in ipsa praesentium ut. Iste nihil eos rem est nostrum odit consectetur. Cupiditate eum nihil fugit est voluptatem. In non consequatur dignissimos est cum unde architecto quo. Est rerum debitis doloremque nam nisi magni natus. Ut dignissimos aut. Eum sapiente pariatur et iste dolore amet. Unde perspiciatis reiciendis fuga provident quidem qui quia sunt quasi. Sunt sit nemo et qui voluptas quam voluptates necessitatibus cumque. Iusto sed et. Dolor qui dolor. Molestiae nam perferendis quisquam quis et quas corporis tempora. Qui sit autem explicabo quo accusamus ratione maiores iure. Ea est dolores odit labore quidem. Ut earum consequatur ea quia. Dignissimos quis consectetur non dignissimos atque. Et quam aliquid. Enim amet perferendis quo sed. Itaque nam et voluptas ut quo deserunt voluptatum minus accusamus. Similique fuga ut aspernatur est eum esse quasi dolorem. Possimus ducimus vel et fugit tenetur nulla excepturi eius omnis. Molestias aut recusandae laboriosam voluptas eaque debitis atque. Voluptatum velit officia explicabo. Nihil sed est ipsam eos iusto ut aut. Omnis fuga voluptatum omnis voluptas qui. Dolores quasi debitis dolorem et quisquam temporibus tenetur ducimus. Doloribus ex hic. Doloribus voluptas asperiores eum qui. Culpa inventore quae ut ut ut iure. Facere nostrum vel. Id nemo aspernatur vel fuga ut neque dolores fugiat iusto. Esse repellat optio sapiente eius sint. Sint a aut esse. Unde optio velit repellendus perspiciatis. Dolorum est est animi. Aliquid iste quis. Ab facere tempora voluptas velit rerum ex eius esse nesciunt. ',
+            'post-body' => '<h2>Amet quia laborum impedit incidunt sit asperiores quae.</h2><p>Sit minima quas eaque doloribus architecto provident sit optio. Quas est molestiae animi omnis fugit. Adipisci quis et sapiente velit beatae. Officia quia eum maxime rerum itaque quibusdam labore distinctio ut. Vitae exercitationem repellendus eaque vel corporis enim.</p><h3>Id necessitatibus aut nihil aut sed qui consequatur dolore.</h3><blockquote>Quae quidem corporis magni beatae ut hic eum quia aut. Exercitationem et aperiam rerum nostrum ducimus iste nulla sint. Aut optio consequatur perspiciatis error incidunt sit atque voluptas. Voluptas tempore deleniti dolore exercitationem quia et. Repudiandae sed fuga laboriosam. Minus et perspiciatis harum fugiat ab aut accusantium molestiae.</blockquote><p>Ab ut fugit ratione dolorem facilis. Velit fuga recusandae consequatur explicabo optio. Autem repellendus eos veniam. Delectus eveniet repellendus voluptatibus dolorum eius officiis consectetur pariatur. Voluptas id quo ut voluptatum praesentium.</p><p>Adipisci et eligendi repellendus veniam voluptas ex quis ea. Aut corporis enim tenetur. Laborum error deleniti accusamus distinctio deserunt quam. Quia ratione vel ex culpa fugit aut.</p>',
+            'plain-text-single-line' => 'In quas assumenda veniam animi ipsam. Non et rerum ipsa est corrupti sint aut et. Quis omnis dolorum maiores aut eveniet minima ut. Unde cum architecto in. Explicabo et at laboriosam non in tempore esse voluptas. Architecto fugit repellat quidem minima exercitationem consequatur similique. Voluptatem sunt doloribus soluta ut nihil. Nesciunt in quod ut esse numquam itaque. Perspiciatis accusantium non ut qui quis placeat. Et ',
+            'plain-text-multiple-line' => 'Possimus aperiam quis illum quibusdam enim inventore. Dicta ut velit veniam in est quia quisquam aut ex. Similique quis ullam dolor rerum. Repellat dignissimos enim sunt dicta dicta. Placeat omnis repellat ipsam. Qui ad quo dolores atque vel animi incidunt est eius. Sed quia omnis et aspernatur odio incidunt voluptas et. Sunt aliquid est tempora amet aut. Totam tempora consequuntur et distinctio ad. Porro consequatur esse veritatis expedita. Possimus tenetur delectus et quia rerum eum et sapiente quia. Consequatur quibusdam maiores quidem totam perspiciatis tempora dolorem. A earum incidunt dolorem quis molestiae ad vel. Id quos consequatur perferendis aspernatur ullam in ea. Eligendi aut magni architecto nihil ex doloribus. Eaque illum omnis est sit vel ut. Eos ut voluptas alias quod sit aut incidunt qui. Aut quae autem. Ipsum nobis optio laboriosam et dolorem dolores odit maiores. Qui voluptatem nemo aut rerum id tempora modi. Qui reiciendis laborum et ut blanditiis eveniet beatae. Sit possimus nam dolorem quo. Corporis corrupti libero alias sapiente autem minima quia. Sit nemo repellendus sint pariatur ipsam omnis iure. Sunt amet et temporibus sunt eum. Quas dolorem ullam mollitia harum eaque dolorem magni quis sint. Aperiam aut atque tenetur neque corporis sit sapiente. Sapiente ut excepturi distinctio omnis iusto adipisci non qui exercitationem. Incidunt molestias consectetur incidunt qui. Saepe nihil laboriosam temporibus. Doloribus velit reiciendis eum in ipsa praesentium ut. Iste nihil eos rem est nostrum odit consectetur. Cupiditate eum nihil fugit est voluptatem. In non consequatur dignissimos est cum unde architecto quo. Est rerum debitis doloremque nam nisi magni natus. Ut dignissimos aut. Eum sapiente pariatur et iste dolore amet. Unde perspiciatis reiciendis fuga provident quidem qui quia sunt quasi. Sunt sit nemo et qui voluptas quam voluptates necessitatibus cumque. Iusto sed et. Dolor qui dolor. Molestiae nam perferendis quisquam quis et quas corporis tempora. Qui sit autem explicabo quo accusamus ratione maiores iure. Ea est dolores odit labore quidem. Ut earum consequatur ea quia. Dignissimos quis consectetur non dignissimos atque. Et quam aliquid. Enim amet perferendis quo sed. Itaque nam et voluptas ut quo deserunt voluptatum minus accusamus. Similique fuga ut aspernatur est eum esse quasi dolorem. Possimus ducimus vel et fugit tenetur nulla excepturi eius omnis. Molestias aut recusandae laboriosam voluptas eaque debitis atque. Voluptatum velit officia explicabo. Nihil sed est ipsam eos iusto ut aut. Omnis fuga voluptatum omnis voluptas qui. Dolores quasi debitis dolorem et quisquam temporibus tenetur ducimus. Doloribus ex hic. Doloribus voluptas asperiores eum qui. Culpa inventore quae ut ut ut iure. Facere nostrum vel. Id nemo aspernatur vel fuga ut neque dolores fugiat iusto. Esse repellat optio sapiente eius sint. Sint a aut esse. Unde optio velit repellendus perspiciatis. Dolorum est est animi. Aliquid iste quis. Ab facere tempora voluptas velit rerum ex eius esse nesciunt. ',
             'phone' => '+1 123 213 052',
             'slug' => '10-great-examples-of-responsive-websites',
             'main-image' => [
                 'fileId' => '659fbdf3163e480e7ebd1c98',
-                'url' =>
-                    'https://uploads-ssl.webflow.com/6514fcd34a9cbbd7c7e12665/659fbdf3163e480e7ebd1c98_image13.jpeg',
+                'url' => 'https://uploads-ssl.webflow.com/6514fcd34a9cbbd7c7e12665/659fbdf3163e480e7ebd1c98_image13.jpeg',
                 'alt' => null,
             ],
             'file' => [
                 'fileId' => '659fbdf3163e480e7ebd1cb0',
-                'url' =>
-                    'https://uploads-ssl.webflow.com/6514fcd34a9cbbd7c7e12665/659fbdf3163e480e7ebd1cb0_image16.jpeg',
+                'url' => 'https://uploads-ssl.webflow.com/6514fcd34a9cbbd7c7e12665/659fbdf3163e480e7ebd1cb0_image16.jpeg',
                 'alt' => null,
             ],
             'multi-image' => [
                 [
                     'fileId' => '659fbdf3163e480e7ebd1c9b',
-                    'url' =>
-                        'https://uploads-ssl.webflow.com/6514fcd34a9cbbd7c7e12665/659fbdf3163e480e7ebd1c9b_image4.jpeg',
+                    'url' => 'https://uploads-ssl.webflow.com/6514fcd34a9cbbd7c7e12665/659fbdf3163e480e7ebd1c9b_image4.jpeg',
                     'alt' => null,
                 ],
                 [
                     'fileId' => '659fbdf3163e480e7ebd1caa',
-                    'url' =>
-                        'https://uploads-ssl.webflow.com/6514fcd34a9cbbd7c7e12665/659fbdf3163e480e7ebd1caa_image1.jpeg',
+                    'url' => 'https://uploads-ssl.webflow.com/6514fcd34a9cbbd7c7e12665/659fbdf3163e480e7ebd1caa_image1.jpeg',
                     'alt' => null,
                 ],
                 [
                     'fileId' => '659fbdf3163e480e7ebd1cad',
-                    'url' =>
-                        'https://uploads-ssl.webflow.com/6514fcd34a9cbbd7c7e12665/659fbdf3163e480e7ebd1cad_image12.jpeg',
+                    'url' => 'https://uploads-ssl.webflow.com/6514fcd34a9cbbd7c7e12665/659fbdf3163e480e7ebd1cad_image12.jpeg',
                     'alt' => null,
                 ],
             ],
@@ -1065,7 +1054,7 @@ return [
             ],
             'reference' => '651e136fc0837aa63b7bb9ab',
         ],
-],
+    ],
     'api.webflow.com/v2/collections/update/items/63766b5d283694ddd30bcdce' => [
         'id' => '63766b5d283694ddd30bcdce',
         'lastPublished' => '2022-11-29T16:22:43.159Z',
