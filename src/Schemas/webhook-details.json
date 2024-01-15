@@ -7,13 +7,13 @@
     "id": {
       "type": "string"
     },
+    "triggerType": {
+      "type": "string"
+    },
     "siteId": {
       "type": "string"
     },
     "workspaceId": {
-      "type": "string"
-    },
-    "triggerType": {
       "type": "string"
     },
     "filter": {
@@ -22,27 +22,27 @@
         "null"
       ]
     },
-    "url": {
-      "type": "string"
-    },
-    "createdOn": {
-      "type": "string"
-    },
     "lastTriggered": {
       "type": [
         "string",
         "null"
       ]
+    },
+    "createdOn": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
     }
   },
   "required":[
     "id",
+    "triggerType",
     "siteId",
     "workspaceId",
-    "triggerType",
     "filter",
-    "url",
+    "lastTriggered",
     "createdOn",
-    "lastTriggered"
+    "url"
   ]
 }

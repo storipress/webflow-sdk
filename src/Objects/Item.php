@@ -14,15 +14,9 @@ class Item extends WebflowObject
     public string $id;
 
     /**
-     * @var non-empty-string
+     * @var non-empty-string|null
      */
-    public string $createdOn;
-
-    public stdClass $fieldData;
-
-    public bool $isArchived;
-
-    public bool $isDraft;
+    public ?string $cmsLocaleId;
 
     /**
      * @var non-empty-string|null
@@ -33,4 +27,15 @@ class Item extends WebflowObject
      * @var non-empty-string
      */
     public string $lastUpdated;
+
+    /**
+     * @var non-empty-string
+     */
+    public string $createdOn;
+
+    public bool $isArchived;
+
+    public bool $isDraft;
+
+    public stdClass $fieldData;
 }

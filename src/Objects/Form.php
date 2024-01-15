@@ -26,11 +26,6 @@ class Form extends WebflowObject
     /**
      * @var non-empty-string
      */
-    public string $workspaceId;
-
-    /**
-     * @var non-empty-string
-     */
     public string $siteDomainId;
 
     /**
@@ -44,11 +39,16 @@ class Form extends WebflowObject
     public string $pageName;
 
     /**
-     * @var array<string, FormField>
+     * @var non-empty-string
      */
-    public array $fields;
+    public string $workspaceId;
 
     public stdClass $responseSettings;
+
+    /**
+     * @var array<non-empty-string, FormField>
+     */
+    public array $fields;
 
     /**
      * @var non-empty-string
@@ -63,7 +63,7 @@ class Form extends WebflowObject
     public static function from(stdClass $data): static
     {
         $data->fields = array_map(
-            fn ($data) => FormField::from($data),
+            fn (stdClass $data) => FormField::from($data),
             (array) $data->fields,
         );
 

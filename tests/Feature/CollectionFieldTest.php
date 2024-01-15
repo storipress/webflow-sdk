@@ -5,19 +5,21 @@ use Storipress\Webflow\Objects\CollectionField;
 it('can create collection field', function () {
     $field = $this
         ->webflow
-        ->collectionField
+        ->collectionField()
         ->create(
             'collection_id',
-            false,
-            'RichText',
-            'Post Body',
+            [
+                'displayName' => 'Branc',
+                'type' => 'PlainText',
+                'isRequired' => false,
+            ],
         );
 
     expect($field)->toBeInstanceOf(CollectionField::class);
 
-    expect($field->id)->toBe('75821f618da60c18383330bcc0ca488b');
+    expect($field->id)->toBe('737d6ade0415de8581e74e94a5cf4590');
 
-    expect($field->type)->toBe('RichText');
+    expect($field->type)->toBe('PlainText');
 
     expect($field->isRequired)->toBeFalse();
 });
@@ -25,24 +27,32 @@ it('can create collection field', function () {
 it('can update collection field', function () {
     $field = $this
         ->webflow
-        ->collectionField
+        ->collectionField()
         ->update(
             'update',
-            '75821f618da60c18383330bcc0ca488b',
-            false,
-            'RichText',
-            'Post Body',
+            '737d6ade0415de8581e74e94a5cf4590',
+            [
+                'isRequired' => true,
+            ],
         );
 
     expect($field)->toBeInstanceOf(CollectionField::class);
 
-    expect($field->id)->toBe('75821f618da60c18383330bcc0ca488b');
+    expect($field->id)->toBe('737d6ade0415de8581e74e94a5cf4590');
 
-    expect($field->type)->toBe('RichText');
+    expect($field->type)->toBe('PlainText');
 
-    expect($field->isRequired)->toBeFalse();
+    expect($field->isRequired)->toBeTrue();
 });
 
 it('can delete collection field', function () {
-    // TODO
+    $ok = $this
+        ->webflow
+        ->collectionField()
+        ->delete(
+            'delete',
+            '737d6ade0415de8581e74e94a5cf4590',
+        );
+
+    expect($ok)->toBeTrue();
 });

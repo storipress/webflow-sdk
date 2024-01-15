@@ -7,16 +7,28 @@
     "id": {
       "type": "string"
     },
+    "workspaceId": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "shortName": {
+      "type": "string"
+    },
+    "previewUrl": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "timeZone": {
+      "type": "string"
+    },
     "createdOn": {
       "type": "string"
     },
-    "customDomains": {
-      "type": "array",
-      "items": {
-        "$ref": "custom-domain.json"
-      }
-    },
-    "displayName": {
+    "lastUpdated": {
       "type": "string"
     },
     "lastPublished": {
@@ -25,42 +37,30 @@
         "null"
       ]
     },
-    "lastUpdated": {
-      "type": "string"
+    "customDomains": {
+      "type": "array",
+      "items": {
+        "$ref": "custom-domain.json"
+      }
     },
     "locales": {
       "type": [
         "object",
         "null"
       ]
-    },
-    "previewUrl": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "shortName": {
-      "type": "string"
-    },
-    "timeZone": {
-      "type": "string"
-    },
-    "workspaceId": {
-      "type": "string"
     }
   },
   "required":[
     "id",
-    "createdOn",
-    "customDomains",
+    "workspaceId",
     "displayName",
-    "lastPublished",
-    "lastUpdated",
-    "locales",
-    "previewUrl",
     "shortName",
+    "previewUrl",
     "timeZone",
-    "workspaceId"
+    "createdOn",
+    "lastUpdated",
+    "lastPublished",
+    "customDomains",
+    "locales"
   ]
 }

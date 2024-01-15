@@ -29,7 +29,7 @@ class Site extends Request
         );
 
         return array_map(
-            fn ($data) => SiteObject::from($data),
+            fn (stdClass $data) => SiteObject::from($data),
             $data->sites,
         );
     }
@@ -40,9 +40,9 @@ class Site extends Request
      * @throws HttpException
      * @throws UnexpectedValueException
      */
-    public function get(?string $siteId = null): SiteObject
+    public function get(string $siteId): SiteObject
     {
-        $uri = sprintf('/sites/%s', $siteId ?: $this->app->siteId());
+        $uri = sprintf('/sites/%s', $siteId);
 
         $data = $this->request('get', $uri, schema: 'get-site');
 
@@ -61,9 +61,9 @@ class Site extends Request
      * @throws HttpException
      * @throws UnexpectedValueException
      */
-    public function publish(?string $siteId = null, array $customDomains = [], bool $publishToWebflowSubdomain = false): stdClass
+    public function publish(string $siteId, array $customDomains = [], bool $publishToWebflowSubdomain = false): stdClass
     {
-        $uri = sprintf('/sites/%s/publish', $siteId ?: $this->app->siteId());
+        $uri = sprintf('/sites/%s/publish', $siteId);
 
         $data = $this->request(
             'post',
@@ -76,7 +76,7 @@ class Site extends Request
         );
 
         $data->customDomains = array_map(
-            fn ($data) => CustomDomain::from($data),
+            fn (stdClass $data) => CustomDomain::from($data),
             $data->customDomains,
         );
 

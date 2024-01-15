@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Storipress\Webflow\Objects;
 
 use stdClass;
+use Storipress\Webflow\Objects\Validations\Unknown;
+use Storipress\Webflow\Objects\Validations\Validation;
 
 /**
  * @phpstan-type CollectionFieldType 'PlainText'|'RichText'|'Image'|'MultiImage'|'VideoLink'|'Link'|'Email'|'Phone'|'Number'|'DateTime'|'Switch'|'Color'|'Option'|'File'|'Reference'|'MultiReference'|'User'|'SkuSettings'|'SkuValues'|'Price'|'MembershipPlan'|'TextOption'|'MultiExternalFile'
@@ -16,6 +18,20 @@ class CollectionField extends WebflowObject
      */
     public string $id;
 
+    public bool $isEditable;
+
+    public bool $isRequired;
+
+    /**
+     * @var CollectionFieldType
+     */
+    public string $type;
+
+    /**
+     * @var non-empty-string
+     */
+    public string $slug;
+
     /**
      * @var non-empty-string
      */
@@ -26,19 +42,26 @@ class CollectionField extends WebflowObject
      */
     public ?string $helpText;
 
-    public bool $isEditable;
+    public ?Validation $validations;
 
-    public bool $isRequired;
+    public static function from(stdClass $data): static
+    {
+        $type = $data->type;
 
-    /**
-     * @var non-empty-string
-     */
-    public string $slug;
+        if ($type === 'Switch') {
+            $type = 'SwitchType';
+        }
 
-    /**
-     * @var CollectionFieldType
-     */
-    public string $type;
+        $class = sprintf('Storipress\Webflow\Objects\Validations\%s', $type);
 
-    public ?stdClass $validations;
+        $validations = $data->validations ?: new stdClass();
+
+        if (is_a($class, Validation::class, true)) {
+            $data->validations = $class::from($validations);
+        } else {
+            $data->validations = Unknown::from($validations);
+        }
+
+        return parent::from($data);
+    }
 }

@@ -46,7 +46,7 @@ class Collection extends WebflowObject
     public static function from(stdClass $data): static
     {
         $data->fields = array_map(
-            fn ($data) => CollectionField::from($data),
+            fn (stdClass $data) => CollectionField::from($data),
             $data->fields,
         );
 

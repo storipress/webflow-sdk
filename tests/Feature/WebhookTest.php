@@ -48,3 +48,12 @@ it('can create webhook', function () {
 
     expect($webhook->url)->toBe('https://webhook.site/7f7f7f7f-7f7f-7f7f-7f7f-7f7f7f7f7f7f');
 });
+
+it('can delete webhook', function () {
+    $ok = $this
+        ->webflow
+        ->webhook()
+        ->remove('580e63e98c9a982ac9b8b741');
+
+    expect($ok)->toBeTrue();
+});
