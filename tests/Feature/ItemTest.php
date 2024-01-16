@@ -1,6 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
+namespace Tests\Feature;
+
 use Illuminate\Support\Arr;
+use stdClass;
 use Storipress\Webflow\Objects\Item;
 use Storipress\Webflow\Objects\Pagination;
 

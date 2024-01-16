@@ -1,5 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
+namespace Tests\Feature;
+
 it('can list form', function () {
     $forms = $this
         ->webflow

@@ -1,5 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
+namespace Tests\Feature;
+
+use stdClass;
 use Storipress\Webflow\Objects\CustomDomain;
 use Storipress\Webflow\Objects\Site;
 

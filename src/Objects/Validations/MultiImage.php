@@ -29,19 +29,13 @@ class MultiImage extends Validation
                 return false;
             }
 
-            $headers = get_headers($item, true);
+            $content = file_get_contents($item);
 
-            if ($headers === false) {
+            if ($content === false) {
                 return false;
             }
 
-            $headers = array_change_key_case($headers);
-
-            if (! isset($headers['content-length'])) {
-                return false;
-            }
-
-            $length = (int) $headers['content-length'];
+            $length = strlen($content);
 
             if ($this->minImageSize > $length) {
                 return false;

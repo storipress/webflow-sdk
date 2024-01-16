@@ -28,8 +28,6 @@ class Webflow
 
     protected string $token;
 
-    protected string $siteId;
-
     protected int $retryAfter = 60;
 
     protected int $rateLimitRemaining = 60;
@@ -68,21 +66,6 @@ class Webflow
     public function token(): string
     {
         return $this->token;
-    }
-
-    /**
-     * @param  non-empty-string  $siteId
-     */
-    public function setSiteId(string $siteId): static
-    {
-        $this->siteId = $siteId;
-
-        return $this;
-    }
-
-    public function siteId(): string
-    {
-        return $this->siteId;
     }
 
     public function setRetryAfter(int $retryAfter): Webflow

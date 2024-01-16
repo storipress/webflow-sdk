@@ -1,5 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
+use Illuminate\Support\Facades\Http;
+
 return [
     'api.webflow.com/v2/sites' => [
         'sites' => [
@@ -570,9 +574,7 @@ return [
         'helpText' => null,
         'validations' => null,
     ],
-    'api.webflow.com/v2/collections/delete/fields/737d6ade0415de8581e74e94a5cf4590' => [
-        'ok' => true,
-    ],
+    'api.webflow.com/v2/collections/delete/fields/737d6ade0415de8581e74e94a5cf4590' => Http::response('', 204),
     'api.webflow.com/v2/collections/list/items?offset=0&limit=100' => [
         'items' => [
             [
@@ -1070,9 +1072,7 @@ return [
             'color' => '#db4b68',
         ],
     ],
-    'api.webflow.com/v2/collections/delete/items/63766b5d283694ddd30bcdce' => [
-        'ok' => true,
-    ],
+    'api.webflow.com/v2/collections/delete/items/63766b5d283694ddd30bcdce' => Http::response('', 204),
     'api.webflow.com/v2/collections/collection_id/items/publish' => [
         'publishedItemIds' => [
             '643fd856d66b6528195ee2ca',
@@ -1132,9 +1132,7 @@ return [
         'filter' => null,
         'url' => 'https://webhook.site/7f7f7f7f-7f7f-7f7f-7f7f-7f7f7f7f7f7f',
     ],
-    'api.webflow.com/v2/webhooks/580e63e98c9a982ac9b8b741' => [
-        'ok' => true,
-    ],
+    'api.webflow.com/v2/webhooks/580e63e98c9a982ac9b8b741' => Http::response('', 204),
     'api.webflow.com/v2/sites/582266e0cd48de0f0e3c6d8b/create/webhooks' => [
         'id' => '582266e0cd48de0f0e3c6d8b',
         'triggerType' => 'form_submission',
@@ -1205,4 +1203,16 @@ return [
             'total' => 2,
         ],
     ],
+    'api.webflow.com/v2/sites/exception-400' => Http::response('', 400),
+    'api.webflow.com/v2/sites/exception-401' => Http::response('', 401),
+    'api.webflow.com/v2/sites/exception-403' => Http::response('', 403),
+    'api.webflow.com/v2/sites/exception-404' => Http::response('', 404),
+    'api.webflow.com/v2/sites/exception-409' => Http::response('', 409),
+    'api.webflow.com/v2/sites/exception-429' => Http::response('', 429, ['X-RateLimit-Reset' => 55]),
+    'api.webflow.com/v2/collections/delete/fields/429' => Http::response('', 204, [
+        'Retry-After' => 30,
+        'X-RateLimit-Reset' => (int) now()->timestamp + 30,
+        'X-RateLimit-Remaining' => 0,
+    ]),
+    'api.webflow.com/v2/sites/exception-500' => Http::response('', 500),
 ];

@@ -1,5 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
+namespace Tests\Feature;
+
 use Storipress\Webflow\Objects\Webhook as WebhookObject;
 
 it('can list webhooks', function () {

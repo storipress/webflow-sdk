@@ -1,5 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
+namespace Tests\Feature;
+
 use Storipress\Webflow\Objects\Collection;
 use Storipress\Webflow\Objects\CollectionField;
 use Storipress\Webflow\Objects\SimpleCollection as SimpleCollectionObject;

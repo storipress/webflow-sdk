@@ -36,19 +36,13 @@ class Image extends Validation
             return false;
         }
 
-        $headers = get_headers($value, true);
+        $content = file_get_contents($value);
 
-        if ($headers === false) {
+        if ($content === false) {
             return false;
         }
 
-        $headers = array_change_key_case($headers);
-
-        if (! isset($headers['content-length'])) {
-            return false;
-        }
-
-        $length = (int) $headers['content-length'];
+        $length = strlen($content);
 
         if ($this->minImageSize > $length) {
             return false;
@@ -58,7 +52,7 @@ class Image extends Validation
             return false;
         }
 
-        $size = getimagesize($value);
+        $size = getimagesizefromstring($content);
 
         if ($size === false) {
             return false;
