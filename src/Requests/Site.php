@@ -53,10 +53,10 @@ class Site extends Request
      * @see https://developers.webflow.com/reference/site-publish
      *
      * @param  array<int, non-empty-string>  $customDomains
-     * @return  stdClass{
-     *     customDomains: array<int, CustomDomain>,
-     *     publishToWebflowSubdomain: bool,
-     * }
+     * @return stdClass{
+     *        customDomains: array<int, CustomDomain>,
+     *        publishToWebflowSubdomain: bool,
+     *        }
      *
      * @throws HttpException
      * @throws UnexpectedValueException
