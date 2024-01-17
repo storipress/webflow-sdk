@@ -6,7 +6,6 @@ namespace Storipress\Webflow\Exceptions;
 
 use stdClass;
 use Storipress\Webflow\Objects\WebflowError;
-use Throwable;
 
 abstract class HttpException extends Exception
 {
@@ -15,24 +14,30 @@ abstract class HttpException extends Exception
     public function __construct(
         string $message = '',
         int $code = 0,
-        Throwable $previous = null,
     ) {
-        parent::__construct($message, $code, $previous);
+        parent::__construct($message, $code);
 
-        $error = json_decode($message, false);
+        $this->toErrorObject();
+    }
 
-        if (!($error instanceof stdClass)) {
-            $error = new stdClass();
+    public function toErrorObject(): WebflowError
+    {
+        $data = json_decode($this->message, false);
 
-            $error->message = $message;
-
-            $error->code = (string) $code;
-
-            $error->externalReference = null;
-
-            $error->details = [];
+        if ($data instanceof stdClass) {
+            return $this->error = WebflowError::from($data);
         }
 
-        $this->error = WebflowError::from($error);
+        $error = new WebflowError(new stdClass());
+
+        $error->message = $this->message;
+
+        $error->code = (string) $this->code;
+
+        $error->externalReference = null;
+
+        $error->details = [];
+
+        return $this->error = $error;
     }
 }

@@ -47,7 +47,7 @@ abstract class Request
         string $method,
         string $path,
         array $options = [],
-        string $schema = null,
+        ?string $schema = null,
     ): stdClass|bool {
         $response = $this
             ->app
@@ -55,11 +55,11 @@ abstract class Request
             ->withToken($this->app->token())
             ->{$method}($this->getUrl($path), $options);
 
-        if (!($response instanceof Response)) {
+        if (! ($response instanceof Response)) {
             throw new UnexpectedValueException();
         }
 
-        if (!$response->successful()) {
+        if (! $response->successful()) {
             $this->error(
                 $response->body(),
                 $response->status(),
@@ -75,11 +75,11 @@ abstract class Request
 
         $data = $response->object();
 
-        if (!($data instanceof stdClass)) {
+        if (! ($data instanceof stdClass)) {
             throw new UnexpectedValueException();
         }
 
-        if (!is_string($schema)) {
+        if (! is_string($schema)) {
             return $data;
         }
 
@@ -149,11 +149,11 @@ abstract class Request
         if ($code === 429) {
             $timestamp = Arr::get($headers, 'Retry-After.0');
 
-            if (!is_string($timestamp)) {
+            if (! is_string($timestamp)) {
                 $timestamp = Arr::get($headers, 'X-RateLimit-Reset.0');
             }
 
-            if (!is_string($timestamp)) {
+            if (! is_string($timestamp)) {
                 $timestamp = '60';
             }
 

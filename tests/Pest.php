@@ -1,5 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
+namespace Tests;
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -11,4 +15,7 @@
 |
 */
 
-uses(Tests\TestCase::class)->in('Feature');
+uses(TestCase::class)->in(
+    'Feature',
+    'Unit',
+);

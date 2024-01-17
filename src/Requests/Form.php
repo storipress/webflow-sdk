@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Storipress\Webflow\Requests;
 
+use stdClass;
 use Storipress\Webflow\Exceptions\HttpException;
 use Storipress\Webflow\Exceptions\UnexpectedValueException;
 use Storipress\Webflow\Objects\Form as FormObject;
@@ -36,7 +37,7 @@ class Form extends Request
 
         return [
             'data' => array_map(
-                fn ($data) => FormObject::from($data),
+                fn (stdClass $data) => FormObject::from($data),
                 $data->forms,
             ),
             'pagination' => Pagination::from($data->pagination),

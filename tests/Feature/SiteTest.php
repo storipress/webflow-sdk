@@ -1,12 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
+namespace Tests\Feature;
+
+use stdClass;
 use Storipress\Webflow\Objects\CustomDomain;
 use Storipress\Webflow\Objects\Site;
 
 it('can list sites', function () {
-    $sites = $this->webflow->site->list();
+    $sites = $this->webflow->site()->list();
 
-    expect($sites)->toHaveCount(2);
+    expect($sites)->toHaveCount(3);
 
     $site = $sites[0];
 
@@ -32,7 +37,7 @@ it('can list sites', function () {
 });
 
 it('can get specific site', function () {
-    $site = $this->webflow->setSiteId('580e63e98c9a982ac9b8b741')->site->get();
+    $site = $this->webflow->site()->get('580e63e98c9a982ac9b8b741');
 
     expect($site)->toBeInstanceOf(Site::class);
 
@@ -56,9 +61,13 @@ it('can get specific site', function () {
 });
 
 it('can publish specific site', function () {
-    $site = $this->webflow->setSiteId('site_id')->site->publish();
+    $site = $this->webflow->site()->publish(
+        '580e63e98c9a982ac9b8b741',
+        ['test-api-domain.com'],
+        true,
+    );
 
-    expect($site)->toBeInstanceOf(Site::class);
+    expect($site)->toBeInstanceOf(stdClass::class);
 
     expect($site->customDomains)->toBeArray();
 
@@ -74,5 +83,5 @@ it('can publish specific site', function () {
 
     expect($domain->url)->toBe('test-api-domain.com');
 
-    expect($site->publishToWebflowSubdomain)->toBeFalse();
+    expect($site->publishToWebflowSubdomain)->toBeTrue();
 });

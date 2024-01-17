@@ -6,14 +6,8 @@ namespace Storipress\Webflow\Objects;
 
 class WebflowError extends WebflowObject
 {
-    /**
-     * @var non-empty-string
-     */
     public string $message;
 
-    /**
-     * @var non-empty-string
-     */
     public string $code;
 
     public mixed $externalReference;

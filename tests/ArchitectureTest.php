@@ -1,5 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
+namespace Tests;
+
 use Storipress\Webflow\Exceptions\Exception;
 use Storipress\Webflow\Objects\WebflowObject;
 use Storipress\Webflow\Requests\Request;

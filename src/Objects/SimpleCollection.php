@@ -14,17 +14,7 @@ class SimpleCollection extends WebflowObject
     /**
      * @var non-empty-string
      */
-    public string $createdOn;
-
-    /**
-     * @var non-empty-string
-     */
     public string $displayName;
-
-    /**
-     * @var non-empty-string
-     */
-    public string $lastUpdated;
 
     /**
      * @var non-empty-string
@@ -35,4 +25,14 @@ class SimpleCollection extends WebflowObject
      * @var non-empty-string
      */
     public string $slug;
+
+    /**
+     * @var non-empty-string
+     */
+    public string $createdOn;
+
+    /**
+     * @var non-empty-string
+     */
+    public string $lastUpdated;
 }

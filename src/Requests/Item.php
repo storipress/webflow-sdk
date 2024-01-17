@@ -35,7 +35,7 @@ class Item extends Request
 
         return [
             'data' => array_map(
-                fn ($data) => ItemObject::from($data),
+                fn (stdClass $data) => ItemObject::from($data),
                 $data->items,
             ),
             'pagination' => Pagination::from($data->pagination),

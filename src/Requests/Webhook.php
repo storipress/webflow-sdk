@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Storipress\Webflow\Requests;
 
+use stdClass;
 use Storipress\Webflow\Exceptions\HttpException;
 use Storipress\Webflow\Exceptions\UnexpectedValueException;
 use Storipress\Webflow\Objects\Webhook as WebhookObject;
@@ -28,7 +29,7 @@ class Webhook extends Request
         $data = $this->request('get', $uri, schema: 'list-webhooks');
 
         return array_map(
-            fn ($data) => WebhookObject::from($data),
+            fn (stdClass $data) => WebhookObject::from($data),
             $data->webhooks,
         );
     }

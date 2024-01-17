@@ -34,14 +34,14 @@ class Webhook extends WebflowObject
     public ?stdClass $filter;
 
     /**
-     * @var non-empty-string
-     */
-    public string $createdOn;
-
-    /**
      * @var non-empty-string|null
      */
     public ?string $lastTriggered;
+
+    /**
+     * @var non-empty-string
+     */
+    public string $createdOn;
 
     /**
      * @var non-empty-string

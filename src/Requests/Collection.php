@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Storipress\Webflow\Requests;
 
+use stdClass;
 use Storipress\Webflow\Exceptions\HttpException;
 use Storipress\Webflow\Exceptions\UnexpectedValueException;
 use Storipress\Webflow\Objects\Collection as CollectionObject;
@@ -19,14 +20,14 @@ class Collection extends Request
      * @throws HttpException
      * @throws UnexpectedValueException
      */
-    public function list(string $siteId = null): array
+    public function list(string $siteId): array
     {
-        $uri = sprintf('/sites/%s/collections', $siteId ?: $this->app->siteId());
+        $uri = sprintf('/sites/%s/collections', $siteId);
 
         $data = $this->request('get', $uri, schema: 'list-collections');
 
         return array_map(
-            fn ($data) => SimpleCollectionObject::from($data),
+            fn (stdClass $data) => SimpleCollectionObject::from($data),
             $data->collections,
         );
     }
@@ -38,12 +39,12 @@ class Collection extends Request
      * @throws UnexpectedValueException
      */
     public function create(
-        string $siteId = null,
+        string $siteId,
         string $displayName,
         string $singularName,
-        string $slug = null,
+        ?string $slug = null,
     ): CollectionObject {
-        $uri = sprintf('/sites/%s/collections', $siteId ?: $this->app->siteId());
+        $uri = sprintf('/sites/%s/collections', $siteId);
 
         $data = $this->request(
             'post',

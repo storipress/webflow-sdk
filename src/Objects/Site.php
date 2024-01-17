@@ -16,19 +16,7 @@ class Site extends WebflowObject
     /**
      * @var non-empty-string
      */
-    public string $createdOn;
-
-    /**
-     * @var array<int, CustomDomain>
-     */
-    public array $customDomains;
-
-    /**
-     * @todo need-explain
-     *
-     * @var non-empty-string
-     */
-    public string $defaultDomain;
+    public string $workspaceId;
 
     /**
      * @var non-empty-string
@@ -36,30 +24,9 @@ class Site extends WebflowObject
     public string $displayName;
 
     /**
-     * @var non-empty-string|null
-     */
-    public ?string $lastPublished;
-
-    /**
      * @var non-empty-string
      */
-    public string $lastUpdated;
-
-    /**
-     * "locales": {
-     *     "primary": {
-     *         "id": "6541df32dc229bb7babac592",
-     *         "cmsId": "6541df32dc229bb7babac593",
-     *         "enabled": false,
-     *         "displayName": "English",
-     *         "redirect": true,
-     *         "subdirectory": "en",
-     *         "tag": "en"
-     *     },
-     *     "secondary": []
-     * }
-     */
-    public ?stdClass $locales;
+    public string $shortName;
 
     /**
      * @var non-empty-string|null
@@ -69,25 +36,48 @@ class Site extends WebflowObject
     /**
      * @var non-empty-string
      */
-    public string $shortName;
-
-    /**
-     * @var non-empty-string
-     */
     public string $timeZone;
 
     /**
      * @var non-empty-string
      */
-    public string $workspaceId;
+    public string $createdOn;
+
+    /**
+     * @var non-empty-string
+     */
+    public string $lastUpdated;
+
+    /**
+     * @var non-empty-string|null
+     */
+    public ?string $lastPublished;
+
+    /**
+     * @var array<int, CustomDomain>
+     */
+    public array $customDomains;
+
+    public ?Locales $locales;
+
+    /**
+     * Webflow build-in domain.
+     *
+     * @var non-empty-string
+     */
+    public string $defaultDomain;
 
     public static function from(stdClass $data): static
     {
         if (property_exists($data, 'customDomains')) {
             $data->customDomains = array_map(
-                fn ($data) => CustomDomain::from($data),
+                fn (stdClass $data) => CustomDomain::from($data),
                 $data->customDomains,
             );
+        }
+
+        if (property_exists($data, 'locales') && $data->locales instanceof stdClass) {
+            $data->locales = Locales::from($data->locales);
         }
 
         $object = parent::from($data);
