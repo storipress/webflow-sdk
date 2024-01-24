@@ -37,11 +37,11 @@ class MultiImage extends Validation
 
             $length = strlen($content);
 
-            if ($this->minImageSize > $length) {
+            if (($this->minImageSize * 1024) > $length) {
                 return false;
             }
 
-            if ($length > $this->maxImageSize) {
+            if ($length > ($this->maxImageSize * 1024)) {
                 return false;
             }
         }

@@ -40,7 +40,7 @@ it('can validate image type value with min image size restriction', function () 
 it('can validate image type value with max image size restriction', function () {
     $data = new stdClass();
 
-    $data->maxImageSize = 1;
+    $data->maxImageSize = 0;
 
     $object = Image::from($data);
 
