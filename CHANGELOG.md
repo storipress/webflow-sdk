@@ -1,5 +1,8 @@
 ## 2.x
 
+- 2.0.1 (2024-01-24)
+  - Fix image type filed validation
+
 - 2.0.0 (2024-01-17)
   - Support field validations typing
 
