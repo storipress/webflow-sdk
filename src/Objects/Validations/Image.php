@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Storipress\Webflow\Objects\Validations;
 
+use finfo;
+
 class Image extends Validation
 {
     /**
@@ -52,13 +54,29 @@ class Image extends Validation
             return false;
         }
 
-        $size = getimagesizefromstring($content);
+        $mime = (new finfo)->buffer($content, FILEINFO_MIME_TYPE);
 
-        if ($size === false) {
-            return false;
+        if ($mime === 'image/svg+xml') {
+            $xml = simplexml_load_string($content);
+
+            if ($xml === false) {
+                return false;
+            }
+
+            $attributes = $xml->attributes();
+
+            $width = (int) $attributes->width;
+
+            $height = (int) $attributes->height;
+        } else {
+            $size = getimagesizefromstring($content);
+
+            if ($size === false) {
+                return false;
+            }
+
+            [$width, $height] = $size;
         }
-
-        [$width, $height] = $size;
 
         if ($this->minImageWidth > $width) {
             return false;
