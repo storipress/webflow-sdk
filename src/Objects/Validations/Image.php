@@ -54,7 +54,7 @@ class Image extends Validation
             return false;
         }
 
-        $mime = (new finfo)->buffer($content, FILEINFO_MIME_TYPE);
+        $mime = (new finfo())->buffer($content, FILEINFO_MIME_TYPE);
 
         if ($mime === 'image/svg+xml') {
             $xml = simplexml_load_string($content);
