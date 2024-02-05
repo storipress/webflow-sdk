@@ -87,10 +87,42 @@ it('can validate image type value with max image height restriction', function (
     expect($object->validate($this->path))->toBeFalse();
 });
 
-it('can not validate image type value with svg format', function () {
+it('can validate image type value with svg format', function () {
     $data = new stdClass();
 
     $data->maxImageSize = 65535;
+
+    $object = Image::from($data);
+
+    $path = realpath(
+        __DIR__.'/../../Dataset/image.svg',
+    );
+
+    $path = sprintf('file://%s', $path);
+
+    expect($object->validate($path))->toBeTrue();
+});
+
+it('can validate svg image type value with max image height restriction', function () {
+    $data = new stdClass();
+
+    $data->maxImageHeight = 1;
+
+    $object = Image::from($data);
+
+    $path = realpath(
+        __DIR__.'/../../Dataset/image.svg',
+    );
+
+    $path = sprintf('file://%s', $path);
+
+    expect($object->validate($path))->toBeFalse();
+});
+
+it('can validate svg image type value with max image width restriction', function () {
+    $data = new stdClass();
+
+    $data->maxImageWidth = 1;
 
     $object = Image::from($data);
 
