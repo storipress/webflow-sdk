@@ -1,5 +1,8 @@
 ## 2.x
 
+- 2.0.3 (2024-02-06)
+  - Fix int size issue
+
 - 2.0.2 (2024-02-05)
   - Fix svg image type field validation
 
