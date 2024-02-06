@@ -17,9 +17,9 @@ class Number extends Validation
 
     public bool $allowNegative = false;
 
-    public float $minValue = -9007199254740992;
+    public float $minValue = -2147483648;
 
-    public float $maxValue = 9007199254740991;
+    public float $maxValue = 2147483647;
 
     /**
      * {@inheritdoc}

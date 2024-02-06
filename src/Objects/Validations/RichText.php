@@ -8,7 +8,7 @@ class RichText extends Validation
 {
     public int $minLength = 0;
 
-    public int $maxLength = 9007199254740991;
+    public int $maxLength = 2147483647;
 
     /**
      * {@inheritdoc}

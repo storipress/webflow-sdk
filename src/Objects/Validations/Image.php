@@ -19,11 +19,11 @@ class Image extends Validation
 
     public int $minImageWidth = 0;
 
-    public int $maxImageWidth = 9007199254740991;
+    public int $maxImageWidth = 2147483647;
 
     public int $minImageHeight = 0;
 
-    public int $maxImageHeight = 9007199254740991;
+    public int $maxImageHeight = 2147483647;
 
     /**
      * {@inheritdoc}
