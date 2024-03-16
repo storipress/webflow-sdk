@@ -159,7 +159,7 @@ abstract class Request
 
             $ttl = Carbon::createFromTimestamp($timestamp);
 
-            $retry = $ttl->isFuture() ? $ttl->diffInSeconds() : $ttl->getTimestamp();
+            $retry = $ttl->isFuture() ? ((int) $ttl->diffInSeconds()) : $ttl->getTimestamp();
         }
 
         throw match ($code) {
