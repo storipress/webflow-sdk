@@ -1,5 +1,8 @@
 ## 2.x
 
+- 2.0.4 (2024-03-17)
+  - Support Laravel 11
+
 - 2.0.3 (2024-02-06)
   - Fix int size issue
 
