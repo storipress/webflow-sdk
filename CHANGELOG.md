@@ -1,5 +1,8 @@
 ## 2.x
 
+- 2.0.5 (2024-04-19)
+  - Support live endpoints for collection items
+
 - 2.0.4 (2024-03-17)
   - Support Laravel 11
 
