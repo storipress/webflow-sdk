@@ -52,9 +52,13 @@ class Item extends Request
      * @throws HttpException
      * @throws UnexpectedValueException
      */
-    public function create(string $collectionId, array $params): ItemObject
+    public function create(string $collectionId, array $params, bool $live = false): ItemObject
     {
         $uri = sprintf('/collections/%s/items', $collectionId);
+
+        if ($live) {
+            $uri = sprintf('%s/live', $uri);
+        }
 
         $data = $this->request('post', $uri, $params, 'collection-item');
 
@@ -84,9 +88,13 @@ class Item extends Request
      * @throws HttpException
      * @throws UnexpectedValueException
      */
-    public function update(string $collectionId, string $itemId, array $params = []): ItemObject
+    public function update(string $collectionId, string $itemId, array $params = [], bool $live = false): ItemObject
     {
         $uri = sprintf('/collections/%s/items/%s', $collectionId, $itemId);
+
+        if ($live) {
+            $uri = sprintf('%s/live', $uri);
+        }
 
         $data = $this->request('patch', $uri, $params, 'collection-item');
 
@@ -97,9 +105,13 @@ class Item extends Request
      * @throws HttpException
      * @throws UnexpectedValueException
      */
-    public function delete(string $collectionId, string $itemId): bool
+    public function delete(string $collectionId, string $itemId, bool $live = false): bool
     {
         $uri = sprintf('/collections/%s/items/%s', $collectionId, $itemId);
+
+        if ($live) {
+            $uri = sprintf('%s/live', $uri);
+        }
 
         return $this->request('delete', $uri);
     }
